@@ -1,0 +1,12 @@
+.bsp-contact h2 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.bsp-contact form {
+    padding: 20px;
+}
+
+.bsp-contact form > div {
+    width: 100% !important;
+}
