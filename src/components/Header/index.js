@@ -27,6 +27,12 @@ const Header = () => (
                     <LinkContainer activeClassName="active" to="/services">
                         <NavItem>Services</NavItem>
                     </LinkContainer>
+                    <LinkContainer activeClassName="active" to="/login">
+                        <NavItem>Login</NavItem>
+                    </LinkContainer>
+                    <LinkContainer activeClassName="active" to="/register">
+                        <NavItem>Register</NavItem>
+                    </LinkContainer>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

@@ -111,7 +111,7 @@ class Contact extends React.Component {
                                 <br/>
                                 <TextField
                                     name="email"
-                                    value={this.state.email}
+                                    value={this.props.user ? this.props.user.email : this.state.message} // if user registered render email
                                     onChange={this.handleChange}
                                     floatingLabelText="email"
                                     errorText={this.state.errors.email}
@@ -150,5 +150,10 @@ class Contact extends React.Component {
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        user: state.registered.user
+    }
+}
 
-export default connect(null, {saveUser})(Contact);
+export default connect(mapStateToProps, {saveUser})(Contact);

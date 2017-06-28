@@ -25,3 +25,7 @@ ReactDOM.render(
     document.getElementById('root'));
 
 registerServiceWorker();
+
+store.subscribe(() => {
+    console.log('Store changed', store.getState());
+});

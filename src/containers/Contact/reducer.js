@@ -1,5 +1,8 @@
-export default function contact(state=[], action={}) {
+export default function contact(state = [], action) {
+
     switch (action.type) {
-        default: return state;
+        default:
+            return state;
     }
+
 }
