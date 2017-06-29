@@ -4,3 +4,4 @@ export function register(user) {
         user: user
     }
 }
+
