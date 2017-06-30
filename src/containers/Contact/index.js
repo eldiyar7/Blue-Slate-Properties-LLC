@@ -1,7 +1,7 @@
 import React from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
 import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/RaisedButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import './index.css';
 
@@ -135,7 +135,7 @@ class Contact extends React.Component {
                                     multiLine={true}
                                 />
                                 <br/>
-                                <FlatButton
+                                <RaisedButton
                                     primary={true}
                                     label="send"
                                     type="submit"
