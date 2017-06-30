@@ -7,7 +7,7 @@
     "bootstrap": "^3.3.7",
     "express": "4.15.3",
     "history": "^4.6.3",
-    "material-ui": "0.18.3",
+    "material-ui": "^0.18.3",
     "object-assign": "4.1.1",
     "react": "15.6.1",
     "react-bootstrap": "0.31.0",

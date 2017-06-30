@@ -3,7 +3,6 @@ import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import {NavLink} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
 import Dialog from 'material-ui/Dialog';
-import RaisedButton from 'material-ui/RaisedButton';
 import './index.css';
 
 import {firebaseAuth} from '../../config/constants';
@@ -79,10 +78,11 @@ class Header extends React.Component {
                             <LinkContainer activeClassName="active" to="/services">
                                 <NavItem>Services</NavItem>
                             </LinkContainer>
-                            {this.state.authed
-                                ? <RaisedButton onTouchTap={this.logout} label="Sign Out" style={{margin: '6'}}/>
-                                : <RaisedButton onTouchTap={this.openDialog} label="Sign In"
-                                                style={{margin: '6'}}/>}
+                            <LinkContainer activeClassName="active" to="/services">
+                                {this.state.authed
+                                    ? <NavItem onClick={this.logout}>Sign Out</NavItem>
+                                    : <NavItem onClick={this.openDialog}>Sign In</NavItem> }
+                            </LinkContainer>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
