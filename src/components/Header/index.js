@@ -4,6 +4,7 @@ import {NavLink} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
 import Dialog from 'material-ui/Dialog';
 import './index.css';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
 import {firebaseAuth} from '../../config/constants';
 import SignInDialog from './components/signInDialog';
@@ -55,6 +56,11 @@ class Header extends React.Component {
     }
 
     render() {
+        const actions = [
+                <NavigationClose
+                    onClick={this.closeDialog}
+                />
+        ];
         return (
             <div>
                 <Navbar fixedTop fluid>
@@ -66,19 +72,10 @@ class Header extends React.Component {
                     </Navbar.Header>
                     <Navbar.Collapse>
                         <Nav pullRight>
-                            <LinkContainer activeClassName="active" to="/about">
-                                <NavItem>About</NavItem>
-                            </LinkContainer>
-                            <LinkContainer activeClassName="active" to="/contact">
-                                <NavItem>Contact</NavItem>
-                            </LinkContainer>
-                            <LinkContainer activeClassName="active" to="/apartments">
-                                <NavItem>Apartments</NavItem>
-                            </LinkContainer>
                             <LinkContainer activeClassName="active" to="/services">
                                 <NavItem>Services</NavItem>
                             </LinkContainer>
-                            <LinkContainer activeClassName="active" to="/services">
+                            <LinkContainer activeClassName="active" to="/">
                                 {this.state.authed
                                     ? <NavItem onClick={this.logout}>Sign Out</NavItem>
                                     : <NavItem onClick={this.openDialog}>Sign In</NavItem> }
@@ -90,6 +87,8 @@ class Header extends React.Component {
                     open={this.state.dialog}
                     onRequestClose={this.closeDialog}
                     bodyStyle={{padding: 0}}
+                    actions={actions}
+                    contentStyle={{maxWidth: '363px'}}
                 >
                     <SignInDialog />
                 </Dialog>

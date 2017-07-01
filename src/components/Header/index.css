@@ -8,6 +8,15 @@ nav {
     font-family: 'Pacifico', cursive;
 }
 
+.navbar-default .navbar-brand {
+    color: #131317;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #131317;
+}
+
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:focus,
 .navbar-default .navbar-nav > .active > a:hover {
@@ -25,3 +34,5 @@ nav {
     color: #2b2c3e;
     background-color: transparent;
 }
+
+

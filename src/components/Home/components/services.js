@@ -3,10 +3,10 @@ import {Grid, Row, Col} from 'react-bootstrap';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const servicesMedia = [
-  {
-    logo: <i className="fa fa-building-o"></i>,
-    title: "Construction",
-    text: `Blue Slate Properties is the premier builder of new Loft style condominiums in the Chicago
+    {
+        logo: <i className="fa fa-building-o"></i>,
+        title: "Construction",
+        text: `Blue Slate Properties is the premier builder of new Loft style condominiums in the Chicago
           land area. We
           deliver outstanding layouts along with the finest finishes. We work to understand the needs
           of our
@@ -15,11 +15,11 @@ const servicesMedia = [
           Premium fixtures, appliances, fireplaces, marble and granite are all part of out standard of
           quality.
           Our new construction Lofts stand out from the rest.`
-  },
-  {
-    logo: <i className="fa fa-file-text-o"></i>,
-    title: "Apartment Applications",
-    text: `Blue Slate Properties, LLC carefully screens all apartment applications for our buildings by
+    },
+    {
+        logo: <i className="fa fa-file-text-o"></i>,
+        title: "Apartment Applications",
+        text: `Blue Slate Properties, LLC carefully screens all apartment applications for our buildings by
           reviewing
           the credit and housing court records of the applicant, as well as their financial document.
           All
@@ -28,11 +28,11 @@ const servicesMedia = [
           principals. Our thorough screening process enables us to reduce risk to our owners and
           increases
           property values by securing qualified tenants for our buildings.`
-  },
-  {
-    logo: <i className="fa fa-gavel"></i>,
-    title: "Legal Support",
-    text: `Our company stays current on all legal issues and changes in the law. By doing so, we can
+    },
+    {
+        logo: <i className="fa fa-gavel"></i>,
+        title: "Legal Support",
+        text: `Our company stays current on all legal issues and changes in the law. By doing so, we can
           provide useful
           legal support to our clients and their attorneys on non – payment and holdover proceeding as
           well as
@@ -43,11 +43,11 @@ const servicesMedia = [
           system. Furthermore, our building managers are always available to attend court hearing when
           called upon
           by legal council.`
-  },
-  {
-    logo: <i className="fa fa-bar-chart"></i>,
-    title: "Accounting Management",
-    text: `We understand that prompt and accurate collections of rent are necessary to efficient
+    },
+    {
+        logo: <i className="fa fa-bar-chart"></i>,
+        title: "Accounting Management",
+        text: `We understand that prompt and accurate collections of rent are necessary to efficient
           building
           operations. The majority of our rents are received through an automated system and “lock
           box”
@@ -60,11 +60,11 @@ const servicesMedia = [
           forth by city agencies to make certain that the rights of our tenants are upheld and in so
           doing
           strengthening our tenant’s trust and solidifying those relationships.`
-  },
-  {
-    logo: <i className="fa fa-line-chart"></i>,
-    title: "Financia Management and Analysis",
-    text: `At Blue Slate Properties, LLC we appreciate that prompt and precise financial reporting to
+    },
+    {
+        logo: <i className="fa fa-line-chart"></i>,
+        title: "Financia Management and Analysis",
+        text: `At Blue Slate Properties, LLC we appreciate that prompt and precise financial reporting to
           our
           clients is crucial. Accordingly we prepare a monthly financial statement of the property
           which
@@ -72,75 +72,76 @@ const servicesMedia = [
           principals
           of the firm thereby allowing us to access to financial positions of the properties and make
           recommendations to our clients to reduce costs and maximize earning potential.`
-  },
-  {
-    logo: <i className="fa fa-balance-scale"></i>,
-    title: "Expense Control",
-    text: `Being a part of the Blue Slate Properties, LLC portfolio of buildings directly benefits our
+    },
+    {
+        logo: <i className="fa fa-balance-scale"></i>,
+        title: "Expense Control",
+        text: `Being a part of the Blue Slate Properties, LLC portfolio of buildings directly benefits our
           owners by
           allowing them to take advantage of our size. Due to bulk rates and prompt vendor invoice
           payments,
           we are able to secure extremely competitive prices on a wide range of products and services
           form
           insurance coverage to plumbing repairs.`
-  }
+    }
 ];
 
 class Services extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      services: servicesMedia,
-      selectedService: servicesMedia[0]
-    };
-    this.updateService = this.updateService.bind(this);
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            services: servicesMedia,
+            selectedService: servicesMedia[0]
+        };
+        this.updateService = this.updateService.bind(this);
+    }
 
-  updateService(s) {
-    this.setState(function () {
-      return {selectedService: s}
-    })
-  }
+    updateService(s) {
+        this.setState(function () {
+            return {selectedService: s}
+        })
+    }
 
-  render() {
-    return (
-      <Grid className="bsp-services">
-        <Row>
-          <Col sm={12}>
-            <h2>Services</h2>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={4} sm={5} xs={6}>
-            <ul className="circle-container">
-              {this.state.services.map(function (s) {
-                return (
-                  <li onMouseOver={this.updateService.bind(null, s)} key={s.title}><a href="/services">{s.logo}</a></li>
-                );
-              }, this)}
-            </ul>
-          </Col>
-          <Col md={8} sm={7} xs={6}>
-            <ul className="services-container">
-              <li>
-                <div className="service-item">
-                  <div className="header">
-                    <h4>{this.state.selectedService.title}</h4>
-                  </div>
-                  <div className="body">
-                    <p>{this.state.selectedService.text}</p>
-                  </div>
-                  <div className="footer">
-                    <RaisedButton label="View More" primary={true}/>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </Col>
-        </Row>
-      </Grid>
-    );
-  }
+    render() {
+        return (
+            <Grid className="bsp-services">
+                <Row>
+                    <Col sm={12}>
+                        <h2>Services</h2>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={4} sm={5} xs={6}>
+                        <ul className="circle-container">
+                            {this.state.services.map(function (s) {
+                                return (
+                                    <li onMouseOver={this.updateService.bind(null, s)} key={s.title}><a
+                                        href="/services">{s.logo}</a></li>
+                                );
+                            }, this)}
+                        </ul>
+                    </Col>
+                    <Col md={8} sm={7} xs={6}>
+                        <ul className="services-container">
+                            <li>
+                                <div className="service-item">
+                                    <div className="header">
+                                        <h4>{this.state.selectedService.title}</h4>
+                                    </div>
+                                    <div className="body">
+                                        <p>{this.state.selectedService.text}</p>
+                                    </div>
+                                    <div className="footer">
+                                        <RaisedButton label="View More" primary={true}/>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </Col>
+                </Row>
+            </Grid>
+        );
+    }
 }
 
 export default Services;

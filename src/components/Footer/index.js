@@ -3,7 +3,6 @@ import {Grid, Row, Col} from 'react-bootstrap';
 
 const footerRow = {
     fontSize: "14px",
-    textAlign: "center",
     color: "#ccc",
     margin: "auto",
     padding: "20px 0px"
@@ -30,9 +29,9 @@ const socialLinks = {
 
 
 const Footer = () => (
-    <Grid fluid style={{backgroundColor: "#000"}}>
+    <Grid fluid style={{backgroundColor: "#131317", marginTop: '100px'}}>
         <Row>
-            <Col sm={12} style={footerRow}>
+            <Col sm={6} style={footerRow}>
                 <ul style={{listStyle: "none", paddingLeft: "0"}}>
                     <li style={copyright}>
                         &copy; Blue Slate Properties, LLC. All Rights Reserved.

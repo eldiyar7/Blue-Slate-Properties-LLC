@@ -67,7 +67,7 @@ class Contact extends React.Component {
             this.setState({errors}, () => {
                 const isValid = Object.keys(this.state.errors).length === 0 && (!!this.state.phone);
 
-                if(isValid) {
+                if (isValid) {
                     this.setState({disableSubmit: false})
                 } else {
                     this.setState({disableSubmit: true})
@@ -111,7 +111,7 @@ class Contact extends React.Component {
                                 <br/>
                                 <TextField
                                     name="email"
-                                    value={this.props.user ? this.props.user.email : this.state.message} // if user registered render email
+                                    value={this.state.email}
                                     onChange={this.handleChange}
                                     floatingLabelText="email"
                                     errorText={this.state.errors.email}

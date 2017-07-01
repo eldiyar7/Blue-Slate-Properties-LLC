@@ -21,7 +21,7 @@ const viewportMedia = [
 ];
 
 const ViewportTop = () => (
-    <Carousel className="bsp-carousel" controls={false}>
+    <Carousel className="bsp-carousel" controls={false} indicators={false}>
         {viewportMedia.map(function (media) {
             return (
                 <CarouselItem className="bsp-carousel-item" key={media.heroImg}>
