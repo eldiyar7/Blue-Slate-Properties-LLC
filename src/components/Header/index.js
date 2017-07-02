@@ -75,7 +75,7 @@ class Header extends React.Component {
                             <LinkContainer activeClassName="active" to="/services">
                                 <NavItem>Services</NavItem>
                             </LinkContainer>
-                            <LinkContainer activeClassName="active" to="/">
+                            <LinkContainer to="/">
                                 {this.state.authed
                                     ? <NavItem onClick={this.logout}>Sign Out</NavItem>
                                     : <NavItem onClick={this.openDialog}>Sign In</NavItem> }

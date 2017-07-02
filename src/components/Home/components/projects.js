@@ -8,10 +8,10 @@ let apartment = [
     "status": "Elston Timber Lofts",
     "neighbourhood": "Old Town",
     "description": "",
-    "price": 1200,
-    "beds": 3,
-    "baths": 1.5,
-    "area": 2000,
+    "price": 1500,
+    "beds": 2,
+    "baths": 1,
+    "area": 1300,
     "address": "3641 N Elston Ave, Chicago, IL 60645",
     "mainPicture": require('../images/apartment-1/project-1.jpg'),
     "pictures": [
@@ -122,7 +122,6 @@ class Projects extends React.Component {
       return {selectedApartment: apt};
     });
   }
-
 
   render() {
     let settings = {
