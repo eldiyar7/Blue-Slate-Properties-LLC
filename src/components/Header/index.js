@@ -57,9 +57,9 @@ class Header extends React.Component {
 
     render() {
         const actions = [
-                <NavigationClose
-                    onClick={this.closeDialog}
-                />
+            <NavigationClose
+                onClick={this.closeDialog}
+            />
         ];
         return (
             <div>
@@ -72,6 +72,9 @@ class Header extends React.Component {
                     </Navbar.Header>
                     <Navbar.Collapse>
                         <Nav pullRight>
+                            <LinkContainer activeClassName="active" to="/application">
+                                <NavItem>Application</NavItem>
+                            </LinkContainer>
                             <LinkContainer activeClassName="active" to="/services">
                                 <NavItem>Services</NavItem>
                             </LinkContainer>
