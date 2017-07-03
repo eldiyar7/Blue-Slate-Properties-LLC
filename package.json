@@ -6,6 +6,8 @@
     "axios": "0.16.2",
     "bootstrap": "^3.3.7",
     "express": "4.15.3",
+    "formsy-material-ui": "^0.6.0",
+    "formsy-react": "^0.19.5",
     "history": "^4.6.3",
     "material-ui": "^0.18.5",
     "object-assign": "4.1.1",
