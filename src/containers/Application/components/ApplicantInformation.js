@@ -15,7 +15,7 @@ class ApplicantInformation extends React.Component {
                 ssn: "",
                 dob: {}
             }
-        }
+        };
         this.handleChange = this.handleChange.bind(this);
     };
 
@@ -29,23 +29,15 @@ class ApplicantInformation extends React.Component {
     }
 
     handleChange(e, v) {
-        if (e) {
-            this.setState({
-                ...this.state,
-                applicant: {
-                    ...this.state.applicant,
-                    [e.target.name]: e.target.value
-                }
-            });
-        }
+        this.setState({
+            ...this.state,
+            applicant: {
+                ...this.state.applicant,
+                [e.target.name]: e.target.value
+            }
+        });
 
-        if (v && v instanceof Date) {
-            // let dateObj = new Date(v);
-            // let month = dateObj.getUTCMonth() + 1; //months from 1-12
-            // let day = dateObj.getUTCDate();
-            // let year = dateObj.getUTCFullYear();
-            // const dob = `${month}-${day}-${year}`;
-
+        if (v instanceof Date) {
             this.setState({
                 ...this.state,
                 applicant: {

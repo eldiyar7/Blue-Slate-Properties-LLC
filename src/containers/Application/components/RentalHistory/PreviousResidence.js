@@ -4,13 +4,14 @@ import {Row, Col} from 'react-bootstrap';
 import FormsyText from 'formsy-material-ui/lib/FormsyText';
 import FormsySelect from 'formsy-material-ui/lib/FormsySelect';
 import MenuItem from 'material-ui/MenuItem';
+import Subheader from 'material-ui/Subheader';
 
-class RentalHistory extends React.Component {
+class PreviousResidence extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             rentalHistory: {
-                currentResidence: {
+                previousResidence: {
                     address: "",
                     city: "",
                     state: "",
@@ -32,7 +33,7 @@ class RentalHistory extends React.Component {
                 ...this.state,
                 rentalHistory: {
                     ...this.state.rentalHistory,
-                    currentResidence: this.props.model
+                    previousResidence: this.props.model
                 }
             });
         }
@@ -43,8 +44,8 @@ class RentalHistory extends React.Component {
             ...this.state,
             rentalHistory: {
                 ...this.state.rentalHistory,
-                currentResidence: {
-                    ...this.state.rentalHistory.currentResidence,
+                previousResidence: {
+                    ...this.state.rentalHistory.previousResidence,
                     [e.target.name]: e.target.value
                 }
             }
@@ -56,8 +57,8 @@ class RentalHistory extends React.Component {
             ...this.state,
             rentalHistory: {
                 ...this.state.rentalHistory,
-                currentResidence: {
-                    ...this.state.rentalHistory.currentResidence,
+                previousResidence: {
+                    ...this.state.rentalHistory.previousResidence,
                     state: v
                 }
             }
@@ -67,11 +68,12 @@ class RentalHistory extends React.Component {
     render() {
         return (
             <div>
+                <Subheader>Previous Residence</Subheader>
                 <Row>
                     <Col sm={3}>
                         <FormsyText
                             name="address"
-                            value={this.state.rentalHistory.currentResidence.address}
+                            value={this.state.rentalHistory.previousResidence.address}
                             onChange={this.handleChange}
                             validations="isExisty"
                             validationError="Please provide valid current address."
@@ -84,7 +86,7 @@ class RentalHistory extends React.Component {
                     <Col sm={3}>
                         <FormsyText
                             name="city"
-                            value={this.state.rentalHistory.currentResidence.city}
+                            value={this.state.rentalHistory.previousResidence.city}
                             validations="isWords"
                             validationError="Please provide valid city"
                             onChange={this.handleChange}
@@ -97,7 +99,7 @@ class RentalHistory extends React.Component {
                         <FormsySelect
                             name="state"
                             onChange={this.stateHandler}
-                            value={this.state.rentalHistory.currentResidence.state}
+                            value={this.state.rentalHistory.previousResidence.state}
                             required
                             floatingLabelText="State"
                         >
@@ -111,7 +113,7 @@ class RentalHistory extends React.Component {
                     <Col sm={3}>
                         <FormsyText
                             name="zip"
-                            value={this.state.rentalHistory.currentResidence.zip}
+                            value={this.state.rentalHistory.previousResidence.zip}
                             validations={{matchRegexp: /(^\d{5}$)|(^\d{5}-\d{4}$)/}}
                             validationError="Please provide valid zipcode"
                             onChange={this.handleChange}
@@ -125,7 +127,7 @@ class RentalHistory extends React.Component {
                     <Col sm={3}>
                         <FormsyText
                             name="rent"
-                            value={this.state.rentalHistory.currentResidence.rent}
+                            value={this.state.rentalHistory.previousResidence.rent}
                             onChange={this.handleChange}
                             validations="isFloat"
                             validationError="Please provide monthly rent amount in numbers"
@@ -138,7 +140,7 @@ class RentalHistory extends React.Component {
                     <Col sm={3}>
                         <FormsyText
                             name="date"
-                            value={this.state.rentalHistory.currentResidence.date}
+                            value={this.state.rentalHistory.previousResidence.date}
                             onChange={this.handleChange}
                             validationError="Dates of residency (From/To)"
                             floatingLabelText="Dates of residency (From/To)"
@@ -150,7 +152,7 @@ class RentalHistory extends React.Component {
                     <Col sm={3}>
                         <FormsyText
                             name="ownerManagersName"
-                            value={this.state.rentalHistory.currentResidence.ownerManagersName}
+                            value={this.state.rentalHistory.previousResidence.ownerManagersName}
                             validations="isWords"
                             validationError="Please provide owner or managers name"
                             onChange={this.handleChange}
@@ -162,7 +164,7 @@ class RentalHistory extends React.Component {
                     <Col sm={3}>
                         <FormsyText
                             name="ownerManagersPhone"
-                            value={this.state.rentalHistory.currentResidence.ownerManagersPhone}
+                            value={this.state.rentalHistory.previousResidence.ownerManagersPhone}
                             validations={{matchRegexp: /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-/\s.]?[0-9]{4}$/}}
                             validationError="Please provide valid cell phone number"
                             onChange={this.handleChange}
@@ -177,4 +179,4 @@ class RentalHistory extends React.Component {
     }
 }
 
-export default RentalHistory;
+export default PreviousResidence;

@@ -7,7 +7,11 @@ import FlatButton from 'material-ui/FlatButton';
 import {Grid} from 'react-bootstrap';
 
 import ApplicantInformation from './components/ApplicantInformation';
-import RentalHistory from './components/RentalHistory';
+import CurrentResidence from './components/RentalHistory/CurrentResidence';
+import PreviousResidence from './components/RentalHistory/PreviousResidence';
+import CurrentEmployer from './components/EmploymentHistory/CurrentEmployer';
+import PreviousEmployer from './components/EmploymentHistory/PreviousEmployer';
+import CreditHistory from './components/CreditHistory';
 
 class Application extends React.Component {
     constructor(props) {
@@ -31,9 +35,45 @@ class Application extends React.Component {
                     date: "",
                     ownerManagersName: "",
                     ownerManagersPhone: ""
+                },
+                previousResidence: {
+                    address: "",
+                    city: "",
+                    state: "",
+                    zip: "",
+                    rent: "",
+                    date: "",
+                    ownerManagersName: "",
+                    ownerManagersPhone: ""
                 }
             },
-
+            employmentHistory: {
+                currentEmployer: {
+                    employer: "",
+                    occupation: "",
+                    employerAddress: "",
+                    employerPhone: "",
+                    employmentDate: {},
+                    supervisor: "",
+                    salary: ""
+                },
+                previousEmployer: {
+                    employer: "",
+                    occupation: "",
+                    employerAddress: "",
+                    employerPhone: "",
+                    employmentDate: {},
+                    supervisor: "",
+                    salary: ""
+                }
+            },
+            creditHistory: {
+                checkingAccount: "",
+                savingsAccount: "",
+                creditCard: "",
+                autoLoan: "",
+                additionalDebt: ""
+            },
             canSubmit: false,
             stepIndex: 0,
             finished: false
@@ -64,7 +104,15 @@ class Application extends React.Component {
             case 0:
                 return <ApplicantInformation model={this.state.applicant}/>;
             case 1:
-                return <RentalHistory model={this.state.rentalHistory.currentResidence }/>;
+                return <CurrentResidence model={this.state.rentalHistory.currentResidence }/>;
+            case 2:
+                return <PreviousResidence model={this.state.rentalHistory.previousResidence }/>;
+            case 3:
+                return <CurrentEmployer model={this.state.employmentHistory.currentEmployer}/>;
+            case 4:
+                return <PreviousEmployer model={this.state.employmentHistory.previousEmployer}/>;
+            case 5:
+                return <CreditHistory model={this.state.creditHistory}/>;
             default:
                 return 'You\'re a long way from home sonny jim!';
         }
@@ -86,7 +134,39 @@ class Application extends React.Component {
                     }
                 });
                 break;
-            default: return this.state;
+            case 2:
+                this.setState({
+                    ...this.state,
+                    rentalHistory: {
+                        ...this.state.rentalHistory,
+                        previousResidence: model
+                    }
+                });
+                break;
+            case 3:
+                this.setState({
+                    ...this.state,
+                    employmentHistory: {
+                        ...this.state.employmentHistory,
+                        currentEmployer: model
+                    }
+                });
+                break;
+            case 4:
+                this.setState({
+                    ...this.state,
+                    employmentHistory: {
+                        ...this.state.employmentHistory,
+                        previousEmployer: model
+                    }
+                });
+                break;
+            case 5:
+                this.setState({...this.state, creditHistory: model});
+                break;
+
+            default:
+                return this.state;
         }
 
         const {stepIndex} = this.state;
@@ -103,9 +183,14 @@ class Application extends React.Component {
         }
     };
 
+    // let dateObj = new Date(v);
+    // let month = dateObj.getUTCMonth() + 1; //months from 1-12
+    // let day = dateObj.getUTCDate();
+    // let year = dateObj.getUTCFullYear();
+    // const dob = `${month}-${day}-${year}`;
+
     render() {
         const {stepIndex} = this.state;
-        console.log(this.state);
         return (
             <Grid style={{marginTop: 50}}>
                 <Stepper activeStep={stepIndex}>
@@ -114,6 +199,18 @@ class Application extends React.Component {
                     </Step>
                     <Step>
                         <StepLabel>Rental History</StepLabel>
+                    </Step>
+                    <Step>
+                        <StepLabel>Rental History</StepLabel>
+                    </Step>
+                    <Step>
+                        <StepLabel>Employment History</StepLabel>
+                    </Step>
+                    <Step>
+                        <StepLabel>Employment History</StepLabel>
+                    </Step>
+                    <Step>
+                        <StepLabel>Credit History</StepLabel>
                     </Step>
                 </Stepper>
                 <Paper zDepth={5}>
@@ -132,7 +229,7 @@ class Application extends React.Component {
                                 style={{marginRight: 12}}
                             />
                             <RaisedButton
-                                label={stepIndex === 2 ? 'Finish' : 'Next'}
+                                label={stepIndex === 6  ? 'Finish' : 'Next'}
                                 primary={true}
                                 onTouchTap={this.handleNext}
                                 disabled={!this.state.canSubmit}
