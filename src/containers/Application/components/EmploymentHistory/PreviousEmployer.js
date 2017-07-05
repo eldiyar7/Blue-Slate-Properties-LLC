@@ -30,13 +30,15 @@ class PreviousEmployer extends React.Component {
     }
 
     handleChange(e, v) {
-        this.setState({
-            ...this.state,
-            previousEmployer: {
-                ...this.state.previousEmployer,
-                [e.target.name]: e.target.value
-            }
-        });
+        if(e) {
+            this.setState({
+                ...this.state,
+                previousEmployer: {
+                    ...this.state.previousEmployer,
+                    [e.target.name]: e.target.value
+                }
+            });
+        }
 
         if (v instanceof Date) {
             this.setState({

@@ -30,13 +30,15 @@ class CurrentEmployer extends React.Component {
     }
 
     handleChange(e, v) {
-        this.setState({
-            ...this.state,
-            currentEmployer: {
-                ...this.state.currentEmployer,
-                [e.target.name]: e.target.value
-            }
-        });
+        if(e) {
+            this.setState({
+                ...this.state,
+                currentEmployer: {
+                    ...this.state.currentEmployer,
+                    [e.target.name]: e.target.value
+                }
+            });
+        }
 
         if (v instanceof Date) {
             this.setState({
@@ -125,7 +127,7 @@ class CurrentEmployer extends React.Component {
                 <Col sm={4}>
                     <FormsyText
                         name="Monthly Pay"
-                        value={this.state.currentResidence.safari}
+                        value={this.state.currentEmployer.salary}
                         onChange={this.handleChange}
                         validations="isFloat"
                         validationError="Please provide your monthly income."

@@ -12,68 +12,12 @@ import PreviousResidence from './components/RentalHistory/PreviousResidence';
 import CurrentEmployer from './components/EmploymentHistory/CurrentEmployer';
 import PreviousEmployer from './components/EmploymentHistory/PreviousEmployer';
 import CreditHistory from './components/CreditHistory';
+import References from './components/References';
 
 class Application extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            applicant: {
-                fullName: "",
-                email: "",
-                cellPhone: "",
-                homePhone: "",
-                ssn: "",
-                dob: {}
-            },
-            rentalHistory: {
-                currentResidence: {
-                    address: "",
-                    city: "",
-                    state: "",
-                    zip: "",
-                    rent: "",
-                    date: "",
-                    ownerManagersName: "",
-                    ownerManagersPhone: ""
-                },
-                previousResidence: {
-                    address: "",
-                    city: "",
-                    state: "",
-                    zip: "",
-                    rent: "",
-                    date: "",
-                    ownerManagersName: "",
-                    ownerManagersPhone: ""
-                }
-            },
-            employmentHistory: {
-                currentEmployer: {
-                    employer: "",
-                    occupation: "",
-                    employerAddress: "",
-                    employerPhone: "",
-                    employmentDate: {},
-                    supervisor: "",
-                    salary: ""
-                },
-                previousEmployer: {
-                    employer: "",
-                    occupation: "",
-                    employerAddress: "",
-                    employerPhone: "",
-                    employmentDate: {},
-                    supervisor: "",
-                    salary: ""
-                }
-            },
-            creditHistory: {
-                checkingAccount: "",
-                savingsAccount: "",
-                creditCard: "",
-                autoLoan: "",
-                additionalDebt: ""
-            },
             canSubmit: false,
             stepIndex: 0,
             finished: false
@@ -94,100 +38,67 @@ class Application extends React.Component {
         this.setState({canSubmit: false});
     }
 
-    submitForm(data) {
+    submitForm = (data) => {
         console.log(data);
         alert(JSON.stringify(data, null, 4));
-    }
+    };
 
-    getStepContent(stepIndex) {
+    getStepContent = (stepIndex) => {
         switch (stepIndex) {
             case 0:
-                return <ApplicantInformation model={this.state.applicant}/>;
+                return <ApplicantInformation ref={instance => {
+                    this.child = instance;
+                }} handleNext={this.handleNext} obj={this.state}/>;
             case 1:
-                return <CurrentResidence model={this.state.rentalHistory.currentResidence }/>;
+                return <CurrentResidence ref={instance => {
+                    this.child = instance;
+                }} handleNext={this.handleNext} obj={this.state}/>;
             case 2:
-                return <PreviousResidence model={this.state.rentalHistory.previousResidence }/>;
+                return <PreviousResidence ref={instance => {
+                    this.child = instance;
+                }} handleNext={this.handleNext} obj={this.state}/>;
             case 3:
-                return <CurrentEmployer model={this.state.employmentHistory.currentEmployer}/>;
+                return <CurrentEmployer ref={instance => {
+                    this.child = instance;
+                }} handleNext={this.handleNext} obj={this.state}/>;
             case 4:
-                return <PreviousEmployer model={this.state.employmentHistory.previousEmployer}/>;
+                return <PreviousEmployer ref={instance => {
+                    this.child = instance;
+                }} handleNext={this.handleNext} obj={this.state}/>;
             case 5:
-                return <CreditHistory model={this.state.creditHistory}/>;
+                return <CreditHistory ref={instance => {
+                    this.child = instance;
+                }} handleNext={this.handleNext} obj={this.state}/>;
+            case 6:
+                return <References ref={instance => {
+                    this.child = instance;
+                }} handleNext={this.handleNext} obj={this.state}/>;
             default:
                 return 'You\'re a long way from home sonny jim!';
         }
-    }
+    };
 
-    handleNext = () => {
-        const model = this.refs.form.getModel();
-
-        switch (this.state.stepIndex) {
-            case 0:
-                this.setState({...this.state, applicant: model});
-                break;
-            case 1:
-                this.setState({
-                    ...this.state,
-                    rentalHistory: {
-                        ...this.state.rentalHistory,
-                        currentResidence: model
-                    }
-                });
-                break;
-            case 2:
-                this.setState({
-                    ...this.state,
-                    rentalHistory: {
-                        ...this.state.rentalHistory,
-                        previousResidence: model
-                    }
-                });
-                break;
-            case 3:
-                this.setState({
-                    ...this.state,
-                    employmentHistory: {
-                        ...this.state.employmentHistory,
-                        currentEmployer: model
-                    }
-                });
-                break;
-            case 4:
-                this.setState({
-                    ...this.state,
-                    employmentHistory: {
-                        ...this.state.employmentHistory,
-                        previousEmployer: model
-                    }
-                });
-                break;
-            case 5:
-                this.setState({...this.state, creditHistory: model});
-                break;
-
-            default:
-                return this.state;
-        }
-
-        const {stepIndex} = this.state;
+    handleNext = (obj, name) => {
         this.setState({
-            stepIndex: stepIndex + 1,
-            finished: stepIndex >= 2,
+            ...this.state,
+            [name]: obj
+        });
+        this.setState({
+            stepIndex: obj.stepIndex + 1,
+            finished: obj.stepIndex >= 2,
         });
     };
 
     handlePrev = () => {
         const {stepIndex} = this.state;
+
         if (stepIndex > 0) {
-            this.setState({stepIndex: stepIndex - 1});
+            this.setState({
+                ...this.state,
+                stepIndex: stepIndex - 1
+            });
         }
     };
-
-    // let dateObj = new Date(v);
-    // let month = dateObj.getUTCMonth() + 1; //months from 1-12
-    // let day = dateObj.getUTCDate();
-    // let year = dateObj.getUTCFullYear();
-    // const dob = `${month}-${day}-${year}`;
 
     render() {
         const {stepIndex} = this.state;
@@ -212,6 +123,9 @@ class Application extends React.Component {
                     <Step>
                         <StepLabel>Credit History</StepLabel>
                     </Step>
+                    <Step>
+                        <StepLabel>References</StepLabel>
+                    </Step>
                 </Stepper>
                 <Paper zDepth={5}>
                     <Formsy.Form ref="form"
@@ -221,6 +135,7 @@ class Application extends React.Component {
                                  style={{padding: 20}}
                     >
                         {this.getStepContent(stepIndex)}
+
                         <div style={{marginTop: 12}}>
                             <FlatButton
                                 label="Back"
@@ -228,18 +143,22 @@ class Application extends React.Component {
                                 onTouchTap={this.handlePrev}
                                 style={{marginRight: 12}}
                             />
-                            <RaisedButton
-                                label={stepIndex === 6  ? 'Finish' : 'Next'}
-                                primary={true}
-                                onTouchTap={this.handleNext}
-                                disabled={!this.state.canSubmit}
-                            />
+                            {stepIndex === 5
+                                ? <RaisedButton
+                                    type="submit"
+                                    label="Submit"
+                                    disabled={!this.state.canSubmit}
+                                />
+                                : <RaisedButton
+                                    label={this.state.stepIndex === 6 ? 'Finish' : 'Next'}
+                                    primary={true}
+                                    disabled={!this.state.canSubmit}
+                                    onTouchTap={() => {
+                                        this.child.next();
+                                    }}
+                                />
+                            }
                         </div>
-                        {/*<RaisedButton*/}
-                        {/*type="submit"*/}
-                        {/*label="Submit"*/}
-                        {/*disabled={!this.state.canSubmit}*/}
-                        {/*/>*/}
                     </Formsy.Form>
                 </Paper>
             </Grid>

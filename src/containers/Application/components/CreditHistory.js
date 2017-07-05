@@ -3,7 +3,6 @@ import {Row, Col} from 'react-bootstrap';
 import FormsyText from 'formsy-material-ui/lib/FormsyText';
 import Subheader from 'material-ui/Subheader';
 
-
 class CreditHistory extends React.Component {
     constructor(props) {
         super(props);

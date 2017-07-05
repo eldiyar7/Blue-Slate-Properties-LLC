@@ -10,49 +10,48 @@ class CurrentResidence extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentResidence: {
-                address: "",
-                city: "",
-                state: "",
-                zip: "",
-                rent: "",
-                date: "",
-                ownerManagersName: "",
-                ownerManagersPhone: ""
-            }
+            address: "",
+            city: "",
+            state: "",
+            zip: "",
+            rent: "",
+            date: "",
+            ownerManagersName: "",
+            ownerManagersPhone: "",
+            stepIndex : 1
         };
         this.handleChange = this.handleChange.bind(this);
         this.stateHandler = this.stateHandler.bind(this);
+        this.next = this.next.bind(this);
     }
 
     componentWillMount() {
-        if (this.props.model) {
-            this.setState({
-                ...this.state,
-                currentResidence: this.props.model
-            });
+        const name = this.constructor.name.charAt(0).toLocaleLowerCase() + this.constructor.name.slice(1);
+        if (this.props.obj[name]) {
+            const obj = this.props.obj[name];
+            this.setState(obj);
         }
-    }
+    };
 
-    handleChange(e) {
+    handleChange = (e) => {
         this.setState({
             ...this.state,
-            currentResidence: {
-                ...this.state.currentResidence,
-                [e.target.name]: e.target.value
-            }
+            [e.target.name]: e.target.value
         });
-    }
+    };
 
-    stateHandler(e, v) {
+    stateHandler = (e, v) => {
         this.setState({
             ...this.state,
-            currentResidence: {
-                ...this.state.currentResidence,
-                state: v
-            }
-        })
-    }
+            state: v
+        });
+    };
+
+    next = () => {
+        const obj = this.state;
+        const name = this.constructor.name.charAt(0).toLocaleLowerCase() + this.constructor.name.slice(1);
+        this.props.handleNext(obj, name);
+    };
 
     render() {
         return (
@@ -62,7 +61,7 @@ class CurrentResidence extends React.Component {
                     <Col sm={3}>
                         <FormsyText
                             name="address"
-                            value={this.state.currentResidence.address}
+                            value={this.state.address}
                             onChange={this.handleChange}
                             validations="isExisty"
                             validationError="Please provide valid current address."
@@ -75,7 +74,7 @@ class CurrentResidence extends React.Component {
                     <Col sm={3}>
                         <FormsyText
                             name="city"
-                            value={this.state.currentResidence.city}
+                            value={this.state.city}
                             validations="isWords"
                             validationError="Please provide valid city"
                             onChange={this.handleChange}
@@ -88,7 +87,7 @@ class CurrentResidence extends React.Component {
                         <FormsySelect
                             name="state"
                             onChange={this.stateHandler}
-                            value={this.state.currentResidence.state}
+                            value={this.state.state}
                             required
                             floatingLabelText="State"
                         >
@@ -102,7 +101,7 @@ class CurrentResidence extends React.Component {
                     <Col sm={3}>
                         <FormsyText
                             name="zip"
-                            value={this.state.currentResidence.zip}
+                            value={this.state.zip}
                             validations={{matchRegexp: /(^\d{5}$)|(^\d{5}-\d{4}$)/}}
                             validationError="Please provide valid zipcode"
                             onChange={this.handleChange}
@@ -116,7 +115,7 @@ class CurrentResidence extends React.Component {
                     <Col sm={3}>
                         <FormsyText
                             name="rent"
-                            value={this.state.currentResidence.rent}
+                            value={this.state.rent}
                             onChange={this.handleChange}
                             validations="isFloat"
                             validationError="Please provide monthly rent amount in numbers"
@@ -129,7 +128,7 @@ class CurrentResidence extends React.Component {
                     <Col sm={3}>
                         <FormsyText
                             name="date"
-                            value={this.state.currentResidence.date}
+                            value={this.state.date}
                             onChange={this.handleChange}
                             validationError="Dates of residency (From/To)"
                             floatingLabelText="Dates of residency (From/To)"
@@ -141,7 +140,7 @@ class CurrentResidence extends React.Component {
                     <Col sm={3}>
                         <FormsyText
                             name="ownerManagersName"
-                            value={this.state.currentResidence.ownerManagersName}
+                            value={this.state.ownerManagersName}
                             validations="isWords"
                             validationError="Please provide owner or managers name"
                             onChange={this.handleChange}
@@ -153,7 +152,7 @@ class CurrentResidence extends React.Component {
                     <Col sm={3}>
                         <FormsyText
                             name="ownerManagersPhone"
-                            value={this.state.currentResidence.ownerManagersPhone}
+                            value={this.state.ownerManagersPhone}
                             validations={{matchRegexp: /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-/\s.]?[0-9]{4}$/}}
                             validationError="Please provide valid cell phone number"
                             onChange={this.handleChange}
