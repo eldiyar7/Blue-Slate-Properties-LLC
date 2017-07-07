@@ -16,8 +16,8 @@ class CurrentResidence extends React.Component {
             zip: "",
             rent: "",
             date: "",
-            ownerManagersName: "",
-            ownerManagersPhone: "",
+            owner_managers_name: "",
+            owner_managers_phone: "",
             stepIndex : 1
         };
         this.handleChange = this.handleChange.bind(this);
@@ -139,8 +139,8 @@ class CurrentResidence extends React.Component {
                     </Col>
                     <Col sm={3}>
                         <FormsyText
-                            name="ownerManagersName"
-                            value={this.state.ownerManagersName}
+                            name="owner_managers_name"
+                            value={this.state.owner_managers_name}
                             validations="isWords"
                             validationError="Please provide owner or managers name"
                             onChange={this.handleChange}
@@ -151,8 +151,8 @@ class CurrentResidence extends React.Component {
                     </Col>
                     <Col sm={3}>
                         <FormsyText
-                            name="ownerManagersPhone"
-                            value={this.state.ownerManagersPhone}
+                            name="owner_managers_phone"
+                            value={this.state.owner_managers_phone}
                             validations={{matchRegexp: /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-/\s.]?[0-9]{4}$/}}
                             validationError="Please provide valid cell phone number"
                             onChange={this.handleChange}

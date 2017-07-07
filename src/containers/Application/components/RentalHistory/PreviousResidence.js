@@ -10,60 +10,49 @@ class PreviousResidence extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            rentalHistory: {
-                previousResidence: {
-                    address: "",
-                    city: "",
-                    state: "",
-                    zip: "",
-                    rent: "",
-                    date: "",
-                    ownerManagersName: "",
-                    ownerManagersPhone: ""
-                }
-            }
+            address: "",
+            city: "",
+            state: "",
+            zip: "",
+            rent: "",
+            date: "",
+            owner_managers_name: "",
+            owner_managers_phone: "",
+            stepIndex: 2
         };
         this.handleChange = this.handleChange.bind(this);
         this.stateHandler = this.stateHandler.bind(this);
+        this.next = this.next.bind(this);
+
     }
 
     componentWillMount() {
-        if (this.props.model) {
-            this.setState({
-                ...this.state,
-                rentalHistory: {
-                    ...this.state.rentalHistory,
-                    previousResidence: this.props.model
-                }
-            });
+        const name = this.constructor.name.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
+        if (this.props.obj[name]) {
+            const obj = this.props.obj[name];
+            this.setState(obj);
         }
-    }
+    };
 
-    handleChange(e) {
+    handleChange = (e) => {
         this.setState({
             ...this.state,
-            rentalHistory: {
-                ...this.state.rentalHistory,
-                previousResidence: {
-                    ...this.state.rentalHistory.previousResidence,
-                    [e.target.name]: e.target.value
-                }
-            }
+            [e.target.name]: e.target.value
         });
-    }
+    };
 
-    stateHandler(e, v) {
+    stateHandler = (e, v) => {
         this.setState({
             ...this.state,
-            rentalHistory: {
-                ...this.state.rentalHistory,
-                previousResidence: {
-                    ...this.state.rentalHistory.previousResidence,
-                    state: v
-                }
-            }
+            state: v
         });
-    }
+    };
+
+    next = () => {
+        const obj = this.state;
+        const name = this.constructor.name.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
+        this.props.handleNext(obj, name);
+    };
 
     render() {
         return (
@@ -73,7 +62,7 @@ class PreviousResidence extends React.Component {
                     <Col sm={3}>
                         <FormsyText
                             name="address"
-                            value={this.state.rentalHistory.previousResidence.address}
+                            value={this.state.address}
                             onChange={this.handleChange}
                             validations="isExisty"
                             validationError="Please provide valid current address."
@@ -86,7 +75,7 @@ class PreviousResidence extends React.Component {
                     <Col sm={3}>
                         <FormsyText
                             name="city"
-                            value={this.state.rentalHistory.previousResidence.city}
+                            value={this.state.city}
                             validations="isWords"
                             validationError="Please provide valid city"
                             onChange={this.handleChange}
@@ -99,7 +88,7 @@ class PreviousResidence extends React.Component {
                         <FormsySelect
                             name="state"
                             onChange={this.stateHandler}
-                            value={this.state.rentalHistory.previousResidence.state}
+                            value={this.state.state}
                             required
                             floatingLabelText="State"
                         >
@@ -113,7 +102,7 @@ class PreviousResidence extends React.Component {
                     <Col sm={3}>
                         <FormsyText
                             name="zip"
-                            value={this.state.rentalHistory.previousResidence.zip}
+                            value={this.state.zip}
                             validations={{matchRegexp: /(^\d{5}$)|(^\d{5}-\d{4}$)/}}
                             validationError="Please provide valid zipcode"
                             onChange={this.handleChange}
@@ -127,7 +116,7 @@ class PreviousResidence extends React.Component {
                     <Col sm={3}>
                         <FormsyText
                             name="rent"
-                            value={this.state.rentalHistory.previousResidence.rent}
+                            value={this.state.rent}
                             onChange={this.handleChange}
                             validations="isFloat"
                             validationError="Please provide monthly rent amount in numbers"
@@ -140,7 +129,7 @@ class PreviousResidence extends React.Component {
                     <Col sm={3}>
                         <FormsyText
                             name="date"
-                            value={this.state.rentalHistory.previousResidence.date}
+                            value={this.state.date}
                             onChange={this.handleChange}
                             validationError="Dates of residency (From/To)"
                             floatingLabelText="Dates of residency (From/To)"
@@ -151,8 +140,8 @@ class PreviousResidence extends React.Component {
                     </Col>
                     <Col sm={3}>
                         <FormsyText
-                            name="ownerManagersName"
-                            value={this.state.rentalHistory.previousResidence.ownerManagersName}
+                            name="owner_managers_name"
+                            value={this.state.owner_managers_name}
                             validations="isWords"
                             validationError="Please provide owner or managers name"
                             onChange={this.handleChange}
@@ -163,8 +152,8 @@ class PreviousResidence extends React.Component {
                     </Col>
                     <Col sm={3}>
                         <FormsyText
-                            name="ownerManagersPhone"
-                            value={this.state.rentalHistory.previousResidence.ownerManagersPhone}
+                            name="owner_managers_phone"
+                            value={this.state.owner_managers_phone}
                             validations={{matchRegexp: /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-/\s.]?[0-9]{4}$/}}
                             validationError="Please provide valid cell phone number"
                             onChange={this.handleChange}

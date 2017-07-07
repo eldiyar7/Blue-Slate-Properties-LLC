@@ -7,34 +7,37 @@ class CreditHistory extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            creditHistory: {
-                checkingAccount: "",
-                savingsAccount: "",
-                creditCard: "",
-                autoLoan: "",
-                additionalDebt: "",
-            }
+            checking_account: "",
+            savings_account: "",
+            credit_card: "",
+            auto_loan: "",
+            additional_debt: "",
+            stepIndex: 5
         };
         this.handleChange = this.handleChange.bind(this);
+        this.next = this.next.bind(this);
+
     };
 
     componentWillMount() {
-        if (this.props.model) {
-            this.setState({
-                ...this.state,
-                applicant: this.props.model
-            });
+        const name = this.constructor.name.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
+        if (this.props.obj[name]) {
+            const obj = this.props.obj[name];
+            this.setState(obj);
         }
-    }
+    };
 
-    handleChange(e, v) {
+    handleChange(e) {
         this.setState({
             ...this.state,
-            creditHistory: {
-                ...this.state.creditHistory,
-                [e.target.name]: e.target.value
-            }
+            [e.target.name]: e.target.value
         });
+    };
+
+    next = () => {
+        const obj = this.state;
+        const name = this.constructor.name.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
+        this.props.handleNext(obj, name);
     };
 
     render() {
@@ -43,8 +46,8 @@ class CreditHistory extends React.Component {
                 <Subheader>Balance on deposit or Balance owed</Subheader>
                 <Col sm={12}>
                     <FormsyText
-                        name="checkingAccount"
-                        value={this.state.creditHistory.checkingAccount}
+                        name="checking_account"
+                        value={this.state.checking_account}
                         validations="isFloat"
                         validationError=""
                         onChange={this.handleChange}
@@ -56,8 +59,8 @@ class CreditHistory extends React.Component {
                 </Col>
                 <Col sm={12}>
                     <FormsyText
-                        name="savingsAccount"
-                        value={this.state.creditHistory.savingsAccount}
+                        name="savings_account"
+                        value={this.state.savings_account}
                         validations="isFloat"
                         validationError=""
                         onChange={this.handleChange}
@@ -69,8 +72,8 @@ class CreditHistory extends React.Component {
                 </Col>
                 <Col sm={12}>
                     <FormsyText
-                        name="creditCard"
-                        value={this.state.creditHistory.creditCard}
+                        name="credit_card"
+                        value={this.state.credit_card}
                         validations="isFloat"
                         validationError=""
                         onChange={this.handleChange}
@@ -82,8 +85,8 @@ class CreditHistory extends React.Component {
                 </Col>
                 <Col sm={12}>
                     <FormsyText
-                        name="autoLoan"
-                        value={this.state.creditHistory.autoLoan}
+                        name="auto_loan"
+                        value={this.state.auto_loan}
                         validations="isFloat"
                         validationError=""
                         onChange={this.handleChange}
@@ -95,8 +98,8 @@ class CreditHistory extends React.Component {
                 </Col>
                 <Col sm={12}>
                     <FormsyText
-                        name="additionalDebt"
-                        value={this.state.creditHistory.additionalDebt}
+                        name="additional_debt"
+                        value={this.state.additional_debt}
                         validations="isFloat"
                         validationError=""
                         onChange={this.handleChange}

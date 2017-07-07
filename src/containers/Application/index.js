@@ -15,6 +15,7 @@ import CurrentEmployer from './components/EmploymentHistory/CurrentEmployer';
 import PreviousEmployer from './components/EmploymentHistory/PreviousEmployer';
 import CreditHistory from './components/CreditHistory';
 import References from './components/References';
+import Agreement from './components/Agreement';
 
 import axios from 'axios';
 
@@ -80,8 +81,12 @@ class Application extends React.Component {
                 return <References ref={instance => {
                     this.child = instance;
                 }} handleNext={this.handleNext} obj={this.state}/>;
+            case 7:
+                return <Agreement ref={instance => {
+                    this.child = instance;
+                }} handleNext={this.handleNext} obj={this.state}/>;
             default:
-                return 'You\'re a long way from home sonny jim!';
+                return 'Please fill out the application form.';
         }
     };
 
@@ -100,7 +105,7 @@ class Application extends React.Component {
                     [name]: obj,
                     stepIndex: obj.stepIndex + 1,
                     finished: obj.stepIndex >= 2,
-                    errors : []
+                    errors: []
                 });
             }
 
@@ -163,6 +168,9 @@ class Application extends React.Component {
                     <Step>
                         <StepLabel>References</StepLabel>
                     </Step>
+                    <Step>
+                        <StepLabel>Therms and Conditions</StepLabel>
+                    </Step>
                 </Stepper>
                 <Paper zDepth={5}>
                     <Formsy.Form ref="form"
@@ -188,7 +196,7 @@ class Application extends React.Component {
                                     disabled={!this.state.canSubmit}
                                 />
                                 : <RaisedButton
-                                    label={this.state.stepIndex === 6 ? 'Finish' : 'Next'}
+                                    label={this.state.stepIndex === 6 ? 'Agree' : 'Next'}
                                     primary={true}
                                     disabled={!this.state.canSubmit}
                                     onTouchTap={() => {

@@ -6,33 +6,37 @@ class References extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            reference: {
-                name: "",
-                phone: "",
-                relationship: ""
-            }
-        }
+            name: "",
+            phone: "",
+            relationship: "",
+            stepIndex: 6
+        };
         this.handleChange = this.handleChange.bind(this);
+        this.next = this.next.bind(this);
+
     };
 
     componentWillMount() {
-        if (this.props.model) {
-            this.setState({
-                ...this.state,
-                reference: this.props.model
-            });
+        const name = this.constructor.name.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
+        if (this.props.obj[name]) {
+            const obj = this.props.obj[name];
+            this.setState(obj);
         }
-    }
+    };
 
-    handleChange(e, v) {
+    handleChange(e) {
         this.setState({
             ...this.state,
-            reference: {
-                ...this.state.reference,
-                [e.target.name]: e.target.value
-            }
+            [e.target.name]: e.target.value
         });
     };
+
+    next = () => {
+        const obj = this.state;
+        const name = this.constructor.name.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
+        this.props.handleNext(obj, name);
+    };
+
 
     render() {
         return (
@@ -40,9 +44,9 @@ class References extends React.Component {
                 <Col sm={4}>
                     <FormsyText
                         name="name"
-                        value={this.state.reference.name}
+                        value={this.state.name}
                         validations="isWords"
-                        validationError="Please enter reference name."
+                        validationError="Please enter name."
                         onChange={this.handleChange}
                         floatingLabelText="Name"
                         hintText="ex: Victor Ayala"
@@ -53,7 +57,7 @@ class References extends React.Component {
                 <Col sm={4}>
                     <FormsyText
                         name="phone"
-                        value={this.state.reference.phone}
+                        value={this.state.phone}
                         validations={{matchRegexp: /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-/\s.]?[0-9]{4}$/}}
                         validationError="Please provide valid cell phone number"
                         onChange={this.handleChange}
@@ -65,7 +69,7 @@ class References extends React.Component {
                 <Col sm={4}>
                     <FormsyText
                         name="relationship"
-                        value={this.state.reference.relationship}
+                        value={this.state.relationship}
                         validations="isWords"
                         validationError="Please provide valid answer."
                         onChange={this.handleChange}
