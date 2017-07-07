@@ -7,12 +7,12 @@ class ApplicantInformation extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            fullName: "",
+            full_name: "",
             email: "",
-            cellPhone: "",
-            homePhone: "",
-            ssn: "",
-            dob: {},
+            cell_phone: "",
+            home_phone: "",
+            social_security_number: "",
+            date_of_birth: {},
             stepIndex: 0
         };
 
@@ -21,7 +21,7 @@ class ApplicantInformation extends React.Component {
     };
 
     componentWillMount() {
-        const name = this.constructor.name.charAt(0).toLocaleLowerCase() + this.constructor.name.slice(1);
+        const name = this.constructor.name.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
         if (this.props.obj[name]) {
             const obj = this.props.obj[name];
             this.setState(obj);
@@ -38,14 +38,14 @@ class ApplicantInformation extends React.Component {
         if (v instanceof Date) {
             this.setState({
                 ...this.state,
-                dob: v
+                date_of_birth: v
             });
         }
     };
 
     next = () => {
         const obj = this.state;
-        const name = this.constructor.name.charAt(0).toLocaleLowerCase() + this.constructor.name.slice(1);
+        const name = this.constructor.name.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
         this.props.handleNext(obj, name);
     };
 
@@ -54,8 +54,8 @@ class ApplicantInformation extends React.Component {
             <Row>
                 <Col sm={4}>
                     <FormsyText
-                        name="fullName"
-                        value={this.state.fullName}
+                        name="full_name"
+                        value={this.state.full_name}
                         validations="isWords"
                         validationError="Please enter your full name."
                         onChange={this.handleChange}
@@ -68,8 +68,8 @@ class ApplicantInformation extends React.Component {
                 <Col sm={4}>
                     <FormsyDate
                         onChange={this.handleChange}
-                        name="dob"
-                        value={this.state.dob}
+                        name="date_of_birth"
+                        value={this.state.date_of_birth}
                         required
                         floatingLabelText="Date of Birth"
                         mode="landscape"
@@ -77,50 +77,50 @@ class ApplicantInformation extends React.Component {
                 </Col>
                 <Col sm={4}>
                     <FormsyText
-                        name="ssn"
-                        value={this.state.ssn}
-                        validations={{matchRegexp: /^(\d{3}-?\d{2}-?\d{4}|XXX-XX-XXXX)$/}}
+                        name="social_security_number"
+                        value={this.state.social_security_number}
+                        // validations={{matchRegexp: /^(\d{3}-?\d{2}-?\d{4}|XXX-XX-XXXX)$/}}
                         validationError="Please provide valid social security number"
                         onChange={this.handleChange}
                         floatingLabelText="SSN"
                         type="text"
-                        required
+                        // required
                     />
                 </Col>
                 <Col sm={4}>
                     <FormsyText
                         name="email"
                         value={this.state.email}
-                        validations="isEmail"
+                        // validations="isEmail"
                         validationError="Please provide an email"
                         onChange={this.handleChange}
                         floatingLabelText="Email"
                         type="text"
-                        required
+                        // required
                     />
                 </Col>
                 <Col sm={4}>
                     <FormsyText
-                        name="cellPhone"
-                        value={this.state.cellPhone}
+                        name="cell_phone"
+                        value={this.state.cell_phone}
                         validations={{matchRegexp: /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-/\s.]?[0-9]{4}$/}}
                         validationError="Please provide valid cell phone number"
                         onChange={this.handleChange}
                         floatingLabelText="Cell phone"
                         type="text"
-                        required
+                        // required
                     />
                 </Col>
                 <Col sm={4}>
                     <FormsyText
-                        name="homePhone"
-                        value={this.state.homePhone}
+                        name="home_phone"
+                        value={this.state.home_phone}
                         validations={{matchRegexp: /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-/\s.]?[0-9]{4}$/}}
                         validationError="Please provide valid home phone number"
                         onChange={this.handleChange}
                         floatingLabelText="Home phone"
                         type="text"
-                        required
+                        // required
                     />
                 </Col>
             </Row>

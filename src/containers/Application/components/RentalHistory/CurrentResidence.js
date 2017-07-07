@@ -26,7 +26,7 @@ class CurrentResidence extends React.Component {
     }
 
     componentWillMount() {
-        const name = this.constructor.name.charAt(0).toLocaleLowerCase() + this.constructor.name.slice(1);
+        const name = this.constructor.name.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
         if (this.props.obj[name]) {
             const obj = this.props.obj[name];
             this.setState(obj);
@@ -49,7 +49,7 @@ class CurrentResidence extends React.Component {
 
     next = () => {
         const obj = this.state;
-        const name = this.constructor.name.charAt(0).toLocaleLowerCase() + this.constructor.name.slice(1);
+        const name = this.constructor.name.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
         this.props.handleNext(obj, name);
     };
 
@@ -63,12 +63,12 @@ class CurrentResidence extends React.Component {
                             name="address"
                             value={this.state.address}
                             onChange={this.handleChange}
-                            validations="isExisty"
+                            // validations="isExisty"
                             validationError="Please provide valid current address."
                             floatingLabelText="Address"
                             hintText="4527 N Greenview Ave, Apt #3"
                             type="text"
-                            required
+                            // required
                         />
                     </Col>
                     <Col sm={3}>

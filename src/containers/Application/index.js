@@ -1,10 +1,12 @@
 import React from 'react';
+import _ from 'lodash';
 import Formsy from 'formsy-react';
 import {Step, Stepper, StepLabel} from 'material-ui/Stepper';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import {Grid} from 'react-bootstrap';
+import Dialog from 'material-ui/Dialog';
 
 import ApplicantInformation from './components/ApplicantInformation';
 import CurrentResidence from './components/RentalHistory/CurrentResidence';
@@ -14,13 +16,17 @@ import PreviousEmployer from './components/EmploymentHistory/PreviousEmployer';
 import CreditHistory from './components/CreditHistory';
 import References from './components/References';
 
+import axios from 'axios';
+
 class Application extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             canSubmit: false,
             stepIndex: 0,
-            finished: false
+            finished: false,
+            open: false,
+            errors: []
         };
         this.enableButton = this.enableButton.bind(this);
         this.disableButton = this.disableButton.bind(this);
@@ -28,6 +34,7 @@ class Application extends React.Component {
         this.getStepContent = this.getStepContent.bind(this);
         this.handleNext = this.handleNext.bind(this);
         this.handlePrev = this.handlePrev.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
     enableButton() {
@@ -79,13 +86,33 @@ class Application extends React.Component {
     };
 
     handleNext = (obj, name) => {
-        this.setState({
-            ...this.state,
-            [name]: obj
-        });
-        this.setState({
-            stepIndex: obj.stepIndex + 1,
-            finished: obj.stepIndex >= 2,
+
+        axios({
+            method: 'post',
+            url: '/application',
+            data: {
+                [name]: obj
+            }
+        }).then((response) => {
+            if (response.data === "OK") {
+                this.setState({
+                    ...this.state,
+                    [name]: obj,
+                    stepIndex: obj.stepIndex + 1,
+                    finished: obj.stepIndex >= 2,
+                    errors : []
+                });
+            }
+
+            else {
+                this.setState({
+                    open: true,
+                    errors: response.data
+                });
+            }
+
+        }).catch(function (error) {
+            console.log(error);
         });
     };
 
@@ -100,8 +127,18 @@ class Application extends React.Component {
         }
     };
 
+    handleClose = () => {
+        this.setState({open: false});
+    };
+
     render() {
         const {stepIndex} = this.state;
+        const actions = [
+            <FlatButton
+                label="Cancel"
+                primary={true}
+                onTouchTap={this.handleClose}
+            />]
         return (
             <Grid style={{marginTop: 50}}>
                 <Stepper activeStep={stepIndex}>
@@ -134,6 +171,7 @@ class Application extends React.Component {
                                  onValidSubmit={this.submitForm}
                                  style={{padding: 20}}
                     >
+
                         {this.getStepContent(stepIndex)}
 
                         <div style={{marginTop: 12}}>
@@ -160,6 +198,19 @@ class Application extends React.Component {
                             }
                         </div>
                     </Formsy.Form>
+                    <div>
+                        <Dialog
+                            title="Validation Errors"
+                            actions={actions}
+                            modal={false}
+                            open={this.state.open}
+                            onRequestClose={this.handleClose}
+                        >
+                            <ul style={{listStyle: "none", color: "red"}}>
+                                {this.state.errors.map((err) => <li key={_.uniqueId()}>{err.msg}</li>)}
+                            </ul>
+                        </Dialog>
+                    </div>
                 </Paper>
             </Grid>
         );
