@@ -53,7 +53,7 @@ class Application extends React.Component {
 
     getStepContent = (stepIndex) => {
         switch (stepIndex) {
-            case 0:
+            case 7:
                 return <ApplicantInformation ref={instance => {
                     this.child = instance;
                 }} handleNext={this.handleNext} obj={this.state}/>;
@@ -81,7 +81,7 @@ class Application extends React.Component {
                 return <References ref={instance => {
                     this.child = instance;
                 }} handleNext={this.handleNext} obj={this.state}/>;
-            case 7:
+            case 0:
                 return <Agreement ref={instance => {
                     this.child = instance;
                 }} handleNext={this.handleNext} obj={this.state}/>;
@@ -189,14 +189,14 @@ class Application extends React.Component {
                                 onTouchTap={this.handlePrev}
                                 style={{marginRight: 12}}
                             />
-                            {stepIndex === 5
+                            {stepIndex === 7
                                 ? <RaisedButton
                                     type="submit"
                                     label="Submit"
                                     disabled={!this.state.canSubmit}
                                 />
                                 : <RaisedButton
-                                    label={this.state.stepIndex === 6 ? 'Agree' : 'Next'}
+                                    label={this.state.stepIndex === 7 ? 'Agree' : 'Next'}
                                     primary={true}
                                     disabled={!this.state.canSubmit}
                                     onTouchTap={() => {
