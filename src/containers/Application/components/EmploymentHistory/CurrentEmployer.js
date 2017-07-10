@@ -2,6 +2,7 @@ import React from 'react';
 import {Row, Col} from 'react-bootstrap';
 import FormsyText from 'formsy-material-ui/lib/FormsyText';
 import FormsyDate from 'formsy-material-ui/lib/FormsyDate';
+import Subheader from 'material-ui/Subheader';
 
 class CurrentEmployer extends React.Component {
     constructor(props) {
@@ -53,6 +54,7 @@ class CurrentEmployer extends React.Component {
     render() {
         return (
             <Row>
+                <Subheader>Current Employer</Subheader>
                 <Col sm={4}>
                     <FormsyText
                         name="employer"
@@ -125,7 +127,7 @@ class CurrentEmployer extends React.Component {
                 </Col>
                 <Col sm={4}>
                     <FormsyText
-                        name="Monthly Pay"
+                        name="salary"
                         value={this.state.salary}
                         onChange={this.handleChange}
                         validations="isFloat"

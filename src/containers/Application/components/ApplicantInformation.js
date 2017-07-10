@@ -70,33 +70,33 @@ class ApplicantInformation extends React.Component {
                         onChange={this.handleChange}
                         name="date_of_birth"
                         value={this.state.date_of_birth}
-                        required
                         floatingLabelText="Date of Birth"
                         mode="landscape"
+                        required
                     />
                 </Col>
                 <Col sm={4}>
                     <FormsyText
                         name="social_security_number"
                         value={this.state.social_security_number}
-                        // validations={{matchRegexp: /^(\d{3}-?\d{2}-?\d{4}|XXX-XX-XXXX)$/}}
+                        validations={{matchRegexp: /^(\d{3}-?\d{2}-?\d{4}|XXX-XX-XXXX)$/}}
                         validationError="Please provide valid social security number"
                         onChange={this.handleChange}
                         floatingLabelText="SSN"
                         type="text"
-                        // required
+                        required
                     />
                 </Col>
                 <Col sm={4}>
                     <FormsyText
                         name="email"
                         value={this.state.email}
-                        // validations="isEmail"
+                        validations="isEmail"
                         validationError="Please provide an email"
                         onChange={this.handleChange}
                         floatingLabelText="Email"
                         type="text"
-                        // required
+                        required
                     />
                 </Col>
                 <Col sm={4}>
@@ -108,7 +108,7 @@ class ApplicantInformation extends React.Component {
                         onChange={this.handleChange}
                         floatingLabelText="Cell phone"
                         type="text"
-                        // required
+                        required
                     />
                 </Col>
                 <Col sm={4}>
@@ -120,7 +120,7 @@ class ApplicantInformation extends React.Component {
                         onChange={this.handleChange}
                         floatingLabelText="Home phone"
                         type="text"
-                        // required
+                        required
                     />
                 </Col>
             </Row>

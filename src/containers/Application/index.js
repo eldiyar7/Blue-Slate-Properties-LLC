@@ -25,7 +25,6 @@ class Application extends React.Component {
         this.state = {
             canSubmit: false,
             stepIndex: 0,
-            finished: false,
             open: false,
             errors: []
         };
@@ -46,14 +45,35 @@ class Application extends React.Component {
         this.setState({canSubmit: false});
     }
 
-    submitForm = (data) => {
-        console.log(data);
-        alert(JSON.stringify(data, null, 4));
+    submitForm = () => {
+        const {applicant_information, current_residence, previous_residence, current_employer, previous_employer, credit_history, references, agreement} = this.state;
+
+        axios({
+            method: 'post',
+            url: '/api/applicants',
+            data: {
+                applicant_information: applicant_information,
+                current_residence: current_residence,
+                previous_residence: previous_residence,
+                current_emplyer: current_employer,
+                previous_employer: previous_employer,
+                credit_history: credit_history,
+                references: references,
+                agreement: agreement
+            }
+        }).then((response) => {
+            console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        });
+
+        console.log(this.state);
+        alert(JSON.stringify(this.state, null, 4));
     };
 
     getStepContent = (stepIndex) => {
         switch (stepIndex) {
-            case 7:
+            case 0:
                 return <ApplicantInformation ref={instance => {
                     this.child = instance;
                 }} handleNext={this.handleNext} obj={this.state}/>;
@@ -81,10 +101,12 @@ class Application extends React.Component {
                 return <References ref={instance => {
                     this.child = instance;
                 }} handleNext={this.handleNext} obj={this.state}/>;
-            case 0:
+            case 7:
                 return <Agreement ref={instance => {
                     this.child = instance;
                 }} handleNext={this.handleNext} obj={this.state}/>;
+            case 8:
+                return 'Please press the submit button to submit the application form.';
             default:
                 return 'Please fill out the application form.';
         }
@@ -94,7 +116,7 @@ class Application extends React.Component {
 
         axios({
             method: 'post',
-            url: '/application',
+            url: '/api/validate',
             data: {
                 [name]: obj
             }
@@ -104,7 +126,6 @@ class Application extends React.Component {
                     ...this.state,
                     [name]: obj,
                     stepIndex: obj.stepIndex + 1,
-                    finished: obj.stepIndex >= 2,
                     errors: []
                 });
             }
@@ -143,7 +164,7 @@ class Application extends React.Component {
                 label="Cancel"
                 primary={true}
                 onTouchTap={this.handleClose}
-            />]
+            />];
         return (
             <Grid style={{marginTop: 50}}>
                 <Stepper activeStep={stepIndex}>
@@ -176,7 +197,6 @@ class Application extends React.Component {
                     <Formsy.Form ref="form"
                                  onValid={this.enableButton}
                                  onInvalid={this.disableButton}
-                                 onValidSubmit={this.submitForm}
                                  style={{padding: 20}}
                     >
 
@@ -189,14 +209,14 @@ class Application extends React.Component {
                                 onTouchTap={this.handlePrev}
                                 style={{marginRight: 12}}
                             />
-                            {stepIndex === 7
+                            {this.state.stepIndex === 8
                                 ? <RaisedButton
-                                    type="submit"
                                     label="Submit"
-                                    disabled={!this.state.canSubmit}
+                                    primary={true}
+                                    onTouchTap={this.submitForm}
                                 />
                                 : <RaisedButton
-                                    label={this.state.stepIndex === 7 ? 'Agree' : 'Next'}
+                                    label="Next"
                                     primary={true}
                                     disabled={!this.state.canSubmit}
                                     onTouchTap={() => {
