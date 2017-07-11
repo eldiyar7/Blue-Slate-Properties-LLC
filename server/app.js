@@ -7,7 +7,8 @@ var bodyParser = require('body-parser');
 var util = require('util');
 var index = require('./routes/index');
 var users = require('./routes/users');
-var api = require('./routes/api');
+var application = require('./routes/application');
+var applicants = require('./routes/applicants');
 var expressValidator = require('express-validator');
 var app = express();
 
@@ -26,13 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/api', api);
-
-app.post('/api/applicants', function (req, res) {
-   console.log(req.body);
-   res.sendStatus(200);
-});
-
+app.use('/api', application);
+app.use('/api', applicants);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

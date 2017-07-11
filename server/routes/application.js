@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var pg = require('pg');
 
-//api/applicants
+//api/application
 router.post('/validate', function (req, res, next) {
 
     switch (Object.keys(req.body)[0]) {
@@ -90,7 +90,6 @@ router.post('/validate', function (req, res, next) {
             req.check("agreement.checked", "Not valid input.").notEmpty().isBoolean();
             break;
         }
-
     }
 
     const errors = req.validationErrors();
@@ -99,26 +98,6 @@ router.post('/validate', function (req, res, next) {
     }
     else {
         res.sendStatus(200);
-
-        //PG TEST (DELETE AFTER)
-        // var app = req.body.applicant_information;
-        // var date = new Date(req.body.applicant_information.date_of_birth);
-        //
-        // var date_of_birth = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
-        //
-        // var conString = 'postgres://bsp:jainashka89@localhost:5432/applicants';
-        // var client = new pg.Client(conString);
-        //
-        // client.connect(function (err) {
-        //     if (err) throw err;
-        //
-        //     client.query(`INSERT INTO applicant_information(full_name, date_of_birth, social_security_number, email, cell_phone, home_phone)
-        //     VALUES('${app.full_name}', '${date_of_birth}', '${app.social_security_number}', '${app.email}', ${app.cell_phone}, 312-478-7852)`, function (err, result) {
-        //         if (err) throw err;
-        //
-        //         client.end();
-        //     });
-        // });
     }
 });
 

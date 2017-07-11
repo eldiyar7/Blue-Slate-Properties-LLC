@@ -46,7 +46,16 @@ class Application extends React.Component {
     }
 
     submitForm = () => {
-        const {applicant_information, current_residence, previous_residence, current_employer, previous_employer, credit_history, references, agreement} = this.state;
+        const {
+            applicant_information,
+            current_residence,
+            previous_residence,
+            current_employer,
+            previous_employer,
+            credit_history,
+            references,
+            agreement
+        } = this.state;
 
         axios({
             method: 'post',
@@ -55,7 +64,7 @@ class Application extends React.Component {
                 applicant_information: applicant_information,
                 current_residence: current_residence,
                 previous_residence: previous_residence,
-                current_emplyer: current_employer,
+                current_employer: current_employer,
                 previous_employer: previous_employer,
                 credit_history: credit_history,
                 references: references,
@@ -63,6 +72,7 @@ class Application extends React.Component {
             }
         }).then((response) => {
             console.log(response);
+
         }).catch(function (error) {
             console.log(error);
         });
@@ -106,7 +116,7 @@ class Application extends React.Component {
                     this.child = instance;
                 }} handleNext={this.handleNext} obj={this.state}/>;
             case 8:
-                return 'Please press the submit button to submit the application form.';
+                return <h1>Please press the submit button to submit the application form.</h1>;
             default:
                 return 'Please fill out the application form.';
         }
