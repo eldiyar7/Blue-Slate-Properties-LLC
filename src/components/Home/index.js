@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ViewportTop from './components/ViewportTop';
-import Services from './components/Services';
+import Services from './components/Services/index';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 
