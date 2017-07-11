@@ -3,8 +3,6 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import {firebaseAuth} from '../../config/constants';
-import {connect} from 'react-redux';
-import {register} from './action';
 
 class Register extends React.Component {
 
@@ -54,4 +52,4 @@ class Register extends React.Component {
     }
 }
 
-export default connect(null, {register})(Register);
+export default Register;

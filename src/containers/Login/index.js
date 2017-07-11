@@ -1,6 +1,5 @@
 import React from 'react';
 import {firebaseAuth} from '../../config/constants';
-import {connect} from 'react-redux';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -19,13 +18,13 @@ class Login extends React.Component {
         firebaseAuth().sendPasswordResetEmail(this.email.input.value)
             .then(() => this.setState({error: `Password reset email sent to ${this.email.input.value}.`}))
             .catch((error) => this.setState({error: 'Email address not found.'}))
-    }
+    };
 
     handleSubmit = (e) => {
         e.preventDefault();
         firebaseAuth().signInWithEmailAndPassword(this.email.input.value, this.pw.input.value)
             .then(user => {
-                console.log(user)
+                //user
             }).catch(e => this.setState({error: 'Invalid username/password.'}))
     };
 
@@ -67,4 +66,4 @@ class Login extends React.Component {
     }
 }
 
-export default connect(null)(Login);
+export default Login;

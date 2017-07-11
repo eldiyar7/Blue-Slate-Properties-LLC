@@ -1,12 +1,11 @@
 import React from 'react';
+import firebase from 'firebase';
+import _ from 'lodash';
 import {Grid, Row, Col} from 'react-bootstrap';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import './index.css';
-
-import {connect} from 'react-redux';
-import {saveUser} from './action';
 
 class Contact extends React.Component {
     constructor(props) {
@@ -22,7 +21,6 @@ class Contact extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
 
     handleChange(e) {
         // events are nullified inside the callback, pass cached to var event to callback func
@@ -77,12 +75,16 @@ class Contact extends React.Component {
         });
     }
 
-
     handleSubmit(event) {
         event.preventDefault();
-
         const {name, email, phone, message} = this.state;
-        this.props.saveUser({name, email, phone, message});
+
+        firebase.database().ref('user-' + _.uniqueId()).set({
+            username: name,
+            email: email,
+            phone : phone,
+            message: message
+        }).then(() => window.location.reload());
 
     }
 
@@ -150,10 +152,4 @@ class Contact extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        user: state.registered.user
-    }
-}
-
-export default connect(mapStateToProps, {saveUser})(Contact);
+export default Contact;
