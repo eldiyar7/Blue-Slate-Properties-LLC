@@ -1,5 +1,5 @@
 import React from 'react';
-import {firebaseAuth} from '../../config/constants';
+import {firebaseAuth} from '../../../config/constants';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 

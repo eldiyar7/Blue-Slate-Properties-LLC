@@ -1,7 +1,7 @@
 import React from  'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import Login from '../../../containers/Login/index';
-import Register from '../../../containers/Register/index';
+import Login from './Login';
+import Register from './Register';
 
 
 const signInDialog = () => (

@@ -7,7 +7,7 @@ import './index.css';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
 import {firebaseAuth} from '../../config/constants';
-import SignInDialog from './components/signInDialog';
+import SignInDialog from './components/SignInDialog';
 
 class Header extends React.Component {
     constructor(props) {

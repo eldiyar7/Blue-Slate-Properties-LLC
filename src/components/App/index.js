@@ -3,8 +3,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 // https://github.com/callemall/material-ui/issues/4670
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import Header from '../../components/Header/index';
-import Footer from '../../components/Footer/index';
+import Header from '../Header/index';
+import Footer from '../Footer/index';
 
 
 injectTapEventPlugin();

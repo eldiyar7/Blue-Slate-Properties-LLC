@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import {firebaseAuth} from '../../config/constants';
+import {firebaseAuth} from '../../../config/constants';
 
 class Register extends React.Component {
 
