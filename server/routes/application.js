@@ -21,10 +21,6 @@ router.post('/validate', function (req, res, next) {
         case "current_residence": {
             req.check("current_residence.address", "Not valid address.").notEmpty().isLength({min: 5, max: 50});
             req.check("current_residence.city", "Not valid city.").notEmpty().isLength({min: 2, max: 30});
-            req.check("current_residence.state", "Not valid state.").notEmpty().isAlpha().isLength({
-                min: 2,
-                max: 50
-            });
             req.check("current_residence.zip", "Not valid zip code.").notEmpty().isNumeric();
             req.check("current_residence.rent", "Not valid rent amount.").notEmpty().isFloat({min: 200, max: 5000});
             req.check("current_residence.date", "Not valid date.").notEmpty();
@@ -38,10 +34,6 @@ router.post('/validate', function (req, res, next) {
         case "previous_residence": {
             req.check("previous_residence.address", "Not valid address.").notEmpty().isLength({min: 5, max: 50});
             req.check("previous_residence.city", "Not valid city.").notEmpty().isLength({min: 2, max: 30});
-            req.check("previous_residence.state", "Not valid state.").notEmpty().isAlpha().isLength({
-                min: 2,
-                max: 50
-            });
             req.check("previous_residence.zip", "Not valid zip code.").notEmpty().isNumeric();
             req.check("previous_residence.rent", "Not valid rent amount.").notEmpty().isFloat({
                 min: 200,

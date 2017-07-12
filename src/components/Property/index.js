@@ -6,7 +6,7 @@ import Info from "./components/Info/index";
 class Property extends React.Component {
     render() {
         return (
-            <Grid className="bsp-property">
+            <Grid style={{marginTop: "51px"}}>
                 <Photos apt={this.props.location.state.property.apt}/>
                 <Info apt={this.props.location.state.property.apt}/>
             </Grid>

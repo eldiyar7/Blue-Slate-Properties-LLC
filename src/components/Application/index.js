@@ -71,8 +71,7 @@ class Application extends React.Component {
                 agreement: agreement
             }
         }).then((response) => {
-            console.log(response);
-
+            console.log(response)
         }).catch(function (error) {
             console.log(error);
         });
@@ -123,7 +122,6 @@ class Application extends React.Component {
     };
 
     handleNext = (obj, name) => {
-
         axios({
             method: 'post',
             url: '/api/validate',

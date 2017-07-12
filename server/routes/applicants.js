@@ -14,17 +14,17 @@ router.post('/applicants', function (req, res, next) {
     var pr = req.body.previous_residence;
     var ce = req.body.current_employer;
     var pe = req.body.previous_employer;
+    var ch = req.body.credit_history;
     var r = req.body.references;
     var a = req.body.agreement;
 
     //connect to postgres
-    var conString = 'postgres://bsp:jainashka89@localhost:5432/applicants';
-    var client = new pg.Client(conString);
+    const conString = 'postgres://bsp:jainashka89@localhost:5432/applicants';
+    const client = new pg.Client(conString);
 
     // connect to applicants database
     client.connect(function (err) {
         if (err) throw err;
-
         const ai_query = 'INSERT INTO applicant_information(full_name, date_of_birth, social_security_number, email, cell_phone, home_phone) VALUES($1, $2, $3, $4, $5, $6) RETURNING *';
         const ai_values = [ai.full_name, dateFormatter(ai.date_of_birth), ai.social_security_number, ai.email, ai.cell_phone, ai.home_phone];
         client.query(ai_query, ai_values, function (err, res) {
@@ -75,18 +75,12 @@ router.post('/applicants', function (req, res, next) {
             });
 
             const a_query = 'INSERT INTO agreement(applicant_id, deposit_amount, checked) ' +
-                'VALUES($1, $2, $3, $4)';
+                'VALUES($1, $2, $3)';
             const a_values = [applicant_id, a.deposit_amount, a.checked];
             client.query(a_query, a_values, function (err, res) {
                 if (err) throw err;
             });
-
-            // disconnect database
-            client.end(function (err) {
-                if (err) throw err;
-            })
         });
-
     });
 });
 
