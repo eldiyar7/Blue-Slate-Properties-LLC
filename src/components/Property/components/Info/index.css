@@ -1,0 +1,22 @@
+.info-groups .address-group > h1 {
+}
+
+.info-groups .unit-group {
+    font-size: 16px;
+}
+
+.info-groups .description-group p {
+    font-size: 15px;
+}
+
+.info-groups .estimate-group .status-group .status {
+    font-size: 18px;
+    margin-left: 6px;
+}
+
+.info-groups .estimate-group .price-group .price {
+    font-size: 18px;
+}
+.info-groups .estimate-group .price-group .price-suffix {
+    margin-left: 6px;
+}

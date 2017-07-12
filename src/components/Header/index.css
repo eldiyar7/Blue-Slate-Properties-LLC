@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+
+nav {
+    font-size: 14px;
+}
+
+.navbar-brand {
+    font-family: 'Pacifico', cursive;
+}
+
+.navbar-default .navbar-brand {
+    color: #131317;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #131317;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .active > a:hover {
+    color: #2b2c3e;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .active > a {
+    background-image: none;
+    box-shadow: none;
+}
+
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li > a:hover {
+    color: #2b2c3e;
+    background-color: transparent;
+}
+
+

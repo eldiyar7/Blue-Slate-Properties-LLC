@@ -1,0 +1,59 @@
+.bsp-projects {
+    margin-top: 100px;
+}
+
+.slick-slide {
+    padding-right: 5px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    font-family: "Glyphicons Halflings", "slick", sans-serif;
+    font-size: 40px;
+}
+
+.slick-prev:before {
+    content: "\e257";
+    color: #333333;
+}
+
+.slick-next:before {
+    content: "\e258";
+    color: #333333;
+}
+
+.slick-prev {
+    left: -35px;
+}
+
+.slick-next {
+    right: -15px;
+}
+
+.caption {
+    font-family: 'Montserrat', 'Roboto', Helvetica, sans-serif;
+    color: #fff;
+    text-shadow: 0 0 3px rgba(0,0,0,.5);
+    margin-left: 5px;
+}
+
+.caption .info {
+    margin-left: 6px;
+}
+
+.info .interpunct {
+    padding: 0 5px;
+    font-size: 2em;
+    line-height: 12px;
+}
+
+.caption .price {
+    font-size: 28px;
+    line-height: 1;
+}
+
+.caption .address {
+    font-size: 11px;
+    color: #ccc;
+}
+
