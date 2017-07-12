@@ -51,79 +51,83 @@ class ApplicantInformation extends React.Component {
 
     render() {
         return (
-            <Row>
-                <Col sm={4}>
-                    <FormsyText
-                        name="full_name"
-                        value={this.state.full_name}
-                        validations="isWords"
-                        validationError="Please enter your full name."
-                        onChange={this.handleChange}
-                        floatingLabelText="Full Name"
-                        hintText="ex: Victor Ayala"
-                        type="text"
-                        required
-                    />
-                </Col>
-                <Col sm={4}>
-                    <FormsyDate
-                        onChange={this.handleChange}
-                        name="date_of_birth"
-                        value={this.state.date_of_birth}
-                        floatingLabelText="Date of Birth"
-                        mode="landscape"
-                        required
-                    />
-                </Col>
-                <Col sm={4}>
-                    <FormsyText
-                        name="social_security_number"
-                        value={this.state.social_security_number}
-                        validations={{matchRegexp: /^(\d{3}-?\d{2}-?\d{4}|XXX-XX-XXXX)$/}}
-                        validationError="Please provide valid social security number"
-                        onChange={this.handleChange}
-                        floatingLabelText="SSN"
-                        type="text"
-                        required
-                    />
-                </Col>
-                <Col sm={4}>
-                    <FormsyText
-                        name="email"
-                        value={this.state.email}
-                        validations="isEmail"
-                        validationError="Please provide an email"
-                        onChange={this.handleChange}
-                        floatingLabelText="Email"
-                        type="text"
-                        required
-                    />
-                </Col>
-                <Col sm={4}>
-                    <FormsyText
-                        name="cell_phone"
-                        value={this.state.cell_phone}
-                        validations={{matchRegexp: /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-/\s.]?[0-9]{4}$/}}
-                        validationError="Please provide valid cell phone number"
-                        onChange={this.handleChange}
-                        floatingLabelText="Cell phone"
-                        type="text"
-                        required
-                    />
-                </Col>
-                <Col sm={4}>
-                    <FormsyText
-                        name="home_phone"
-                        value={this.state.home_phone}
-                        validations={{matchRegexp: /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-/\s.]?[0-9]{4}$/}}
-                        validationError="Please provide valid home phone number"
-                        onChange={this.handleChange}
-                        floatingLabelText="Home phone"
-                        type="text"
-                        required
-                    />
-                </Col>
-            </Row>
+            <div>
+                <Row>
+                    <Col sm={4}>
+                        <FormsyText
+                            name="full_name"
+                            value={this.state.full_name}
+                            validations="isWords"
+                            validationError="Please enter your full name."
+                            onChange={this.handleChange}
+                            floatingLabelText="Full Name"
+                            hintText="ex: Victor Ayala"
+                            type="text"
+                            required
+                        />
+                    </Col>
+                    <Col sm={4}>
+                        <FormsyDate
+                            onChange={this.handleChange}
+                            name="date_of_birth"
+                            value={this.state.date_of_birth}
+                            floatingLabelText="Date of Birth"
+                            mode="landscape"
+                            required
+                        />
+                    </Col>
+                    <Col sm={4}>
+                        <FormsyText
+                            name="social_security_number"
+                            value={this.state.social_security_number}
+                            validations={{matchRegexp: /^(\d{3}-?\d{2}-?\d{4}|XXX-XX-XXXX)$/}}
+                            validationError="Please provide valid social security number"
+                            onChange={this.handleChange}
+                            floatingLabelText="SSN"
+                            type="text"
+                            required
+                        />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                        <FormsyText
+                            name="email"
+                            value={this.state.email}
+                            validations="isEmail"
+                            validationError="Please provide an email"
+                            onChange={this.handleChange}
+                            floatingLabelText="Email"
+                            type="text"
+                            required
+                        />
+                    </Col>
+                    <Col sm={4}>
+                        <FormsyText
+                            name="cell_phone"
+                            value={this.state.cell_phone}
+                            validations={{matchRegexp: /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-/\s.]?[0-9]{4}$/}}
+                            validationError="Please provide valid cell phone number"
+                            onChange={this.handleChange}
+                            floatingLabelText="Cell phone"
+                            type="text"
+                            required
+                        />
+                    </Col>
+                    <Col sm={4}>
+                        <FormsyText
+                            name="home_phone"
+                            value={this.state.home_phone}
+                            validations={{matchRegexp: /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-/\s.]?[0-9]{4}$/}}
+                            validationError="Please provide valid home phone number"
+                            onChange={this.handleChange}
+                            floatingLabelText="Home phone"
+                            type="text"
+                            required
+                        />
+                    </Col>
+                </Row>
+            </div>
         );
     }
 }

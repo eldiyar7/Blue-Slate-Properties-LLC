@@ -5,18 +5,24 @@ import {servicesMedia} from '../Home/components/Services/data/servicesMedia';
 import Paper from 'material-ui/Paper';
 
 const Services = () => (
-    <Grid className="services">
-        <Paper>
-            {servicesMedia.map(function (s) {
-                return (
-                    <div className="content">
-                        <h3>{s.title}</h3>
-                        <p>{s.text}</p>
-                    </div>
-                );
-            })}
-        </Paper>
-    </Grid>
+    <div className="services">
+        <div className="s-hero">
+
+        </div>
+        <Grid>
+            <Paper zDepth={5} className="s-paper">
+                {servicesMedia.map(function (s) {
+                    return (
+                        <div className="s-content" key={s.title}>
+                            <h3>{s.title}</h3>
+                            <p>{s.text}</p>
+                        </div>
+                    );
+                })}
+            </Paper>
+        </Grid>
+    </div>
+
 );
 
 export default Services;

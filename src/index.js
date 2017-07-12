@@ -9,8 +9,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import './index.css';
 
 import routes from './routes';
-import createHistory from 'history/createBrowserHistory'
-const history = createHistory();
+import history from './history';
 
 
 ReactDOM.render(

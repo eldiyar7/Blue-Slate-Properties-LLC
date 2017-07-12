@@ -2,6 +2,7 @@ import React from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
 import RaisedButton from 'material-ui/RaisedButton';
 import {servicesMedia} from './data/servicesMedia';
+import {Link} from 'react-router-dom';
 
 class Services extends React.Component {
     constructor(props) {
@@ -49,7 +50,7 @@ class Services extends React.Component {
                                         <p>{this.state.selectedService.text}</p>
                                     </div>
                                     <div className="footer">
-                                        <RaisedButton label="View More" primary={true} onTouchTa=""/>
+                                        <Link to="/services"><RaisedButton label="View More" primary={true}/></Link>
                                     </div>
                                 </div>
                             </li>

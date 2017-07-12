@@ -1,13 +1,23 @@
 .services {
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
-.services  p {
+.services .s-hero {
+    height: 40vh;
+    background-color: #000074;
+}
+
+.services .s-paper {
+    position: relative;
+    top: -100px;
+}
+
+.services .s-content {
+    padding: 25px;
+}
+
+.services .s-content > p {
     font-size: 14px;
     letter-spacing: 0;
     margin: 0 0 16px;
-}
-
-.content {
-    padding: 25px;
 }
