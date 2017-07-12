@@ -1,21 +1,17 @@
 import React from 'react';
 
-import ViewportTop from './components/ViewportTop';
+import ViewportTop from './components/ViewportTop/index';
 import Services from './components/Services/index';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
+import Projects from './components/Projects/index';
+import Contact from './components/Contact/index';
 
-class Home extends React.Component {
-    render() {
-        return (
-            <div>
-                <ViewportTop />
-                <Services />
-                <Projects />
-                <Contact />
-            </div>
-        );
-    }
-}
+const Home = () => (
+    <div>
+        <ViewportTop />
+        <Services />
+        <Projects />
+        <Contact />
+    </div>
+);
 
 export default Home;

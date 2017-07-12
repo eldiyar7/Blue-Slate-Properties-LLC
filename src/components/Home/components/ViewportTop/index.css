@@ -1,0 +1,16 @@
+.bsp-carousel {
+    margin-top: 50px;
+}
+
+.bsp-carousel-item {
+    max-height: 576px;
+}
+
+.bsp-carousel-caption {
+    top: 30%;
+    text-align: left;
+}
+
+.caption-text-bottom {
+    font-weight: 500;
+}

@@ -3,6 +3,7 @@ import {Grid, Row, Col} from 'react-bootstrap';
 import RaisedButton from 'material-ui/RaisedButton';
 import {servicesMedia} from './data/servicesMedia';
 import {Link} from 'react-router-dom';
+import './index.css';
 
 class Services extends React.Component {
     constructor(props) {

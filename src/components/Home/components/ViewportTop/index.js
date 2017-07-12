@@ -1,6 +1,6 @@
 import React from 'react';
 import {Carousel, CarouselItem, Grid, Row, Col} from 'react-bootstrap';
-import '../index.css';
+import './index.css';
 
 const viewportMedia = [
     {

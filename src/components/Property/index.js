@@ -1,7 +1,7 @@
 import React from 'react';
 import {Grid} from 'react-bootstrap';
-import Photos from "./components/Photos";
-import Info from "./components/Info";
+import Photos from "./components/Photos/index";
+import Info from "./components/Info/index";
 
 class Property extends React.Component {
     render() {
