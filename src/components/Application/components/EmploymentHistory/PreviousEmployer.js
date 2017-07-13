@@ -23,9 +23,8 @@ class PreviousEmployer extends React.Component {
     };
 
     componentWillMount() {
-        const name = this.constructor.name.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
-        if (this.props.obj[name]) {
-            const obj = this.props.obj[name];
+        if (this.props.obj) {
+            const obj = this.props.obj;
             this.setState(obj);
         }
     };
@@ -48,8 +47,7 @@ class PreviousEmployer extends React.Component {
 
     next = () => {
         const obj = this.state;
-        const name = this.constructor.name.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
-        this.props.handleNext(obj, name);
+        this.props.handleNext(obj);
     };
 
 

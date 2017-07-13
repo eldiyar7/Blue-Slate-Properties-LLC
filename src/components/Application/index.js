@@ -46,29 +46,18 @@ class Application extends React.Component {
     }
 
     submitForm = () => {
-        const {
-            applicant_information,
-            current_residence,
-            previous_residence,
-            current_employer,
-            previous_employer,
-            credit_history,
-            references,
-            agreement
-        } = this.state;
-
         axios({
             method: 'post',
             url: '/api/applicants',
             data: {
-                applicant_information: applicant_information,
-                current_residence: current_residence,
-                previous_residence: previous_residence,
-                current_employer: current_employer,
-                previous_employer: previous_employer,
-                credit_history: credit_history,
-                references: references,
-                agreement: agreement
+                applicant_information: this.state[0],
+                current_residence: this.state[1],
+                previous_residence: this.state[2],
+                current_employer: this.state[3],
+                previous_employer: this.state[4],
+                credit_history: this.state[5],
+                references: this.state[6],
+                agreement: this.state[7]
             }
         }).then((response) => {
             console.log(response)
@@ -85,35 +74,35 @@ class Application extends React.Component {
             case 0:
                 return <ApplicantInformation ref={instance => {
                     this.child = instance;
-                }} handleNext={this.handleNext} obj={this.state}/>;
+                }} handleNext={this.handleNext} obj={this.state[0]}/>;
             case 1:
                 return <CurrentResidence ref={instance => {
                     this.child = instance;
-                }} handleNext={this.handleNext} obj={this.state}/>;
+                }} handleNext={this.handleNext} obj={this.state[1]}/>;
             case 2:
                 return <PreviousResidence ref={instance => {
                     this.child = instance;
-                }} handleNext={this.handleNext} obj={this.state}/>;
+                }} handleNext={this.handleNext} obj={this.state[2]}/>;
             case 3:
                 return <CurrentEmployer ref={instance => {
                     this.child = instance;
-                }} handleNext={this.handleNext} obj={this.state}/>;
+                }} handleNext={this.handleNext} obj={this.state[3]}/>;
             case 4:
                 return <PreviousEmployer ref={instance => {
                     this.child = instance;
-                }} handleNext={this.handleNext} obj={this.state}/>;
+                }} handleNext={this.handleNext} obj={this.state[4]}/>;
             case 5:
                 return <CreditHistory ref={instance => {
                     this.child = instance;
-                }} handleNext={this.handleNext} obj={this.state}/>;
+                }} handleNext={this.handleNext} obj={this.state[5]}/>;
             case 6:
                 return <References ref={instance => {
                     this.child = instance;
-                }} handleNext={this.handleNext} obj={this.state}/>;
+                }} handleNext={this.handleNext} obj={this.state[6]}/>;
             case 7:
                 return <Agreement ref={instance => {
                     this.child = instance;
-                }} handleNext={this.handleNext} obj={this.state}/>;
+                }} handleNext={this.handleNext} obj={this.state[7]}/>;
             case 8:
                 return <h1>Please press the submit button to submit the application form.</h1>;
             default:
@@ -121,18 +110,18 @@ class Application extends React.Component {
         }
     };
 
-    handleNext = (obj, name) => {
+    handleNext = (obj) => {
         axios({
             method: 'post',
-            url: '/api/validate',
+            url: '/validation',
             data: {
-                [name]: obj
+                object: obj
             }
         }).then((response) => {
             if (response.data === "OK") {
                 this.setState({
                     ...this.state,
-                    [name]: obj,
+                    [obj.stepIndex]: obj,
                     stepIndex: obj.stepIndex + 1,
                     errors: []
                 });
