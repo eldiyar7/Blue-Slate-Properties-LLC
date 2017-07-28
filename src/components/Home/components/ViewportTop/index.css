@@ -14,3 +14,8 @@
 .caption-text-bottom {
     font-weight: 500;
 }
+
+.bsp-carousel img {
+    position: relative;
+    z-index: -1;
+}

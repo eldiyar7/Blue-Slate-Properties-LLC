@@ -124,7 +124,7 @@ class Application extends React.Component {
     handleNext = (obj, name) => {
         axios({
             method: 'post',
-            url: '/api/validate',
+            url: '/api/users',
             data: {
                 [name]: obj
             }

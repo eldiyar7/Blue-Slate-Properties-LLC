@@ -25,7 +25,9 @@ const ViewportTop = () => (
         {viewportMedia.map(function (media) {
             return (
                 <CarouselItem className="bsp-carousel-item" key={media.heroImg}>
-                    <img src={media.heroImg} alt=""/>
+                    <div>
+                        <img src={media.heroImg} alt=""/>
+                    </div>
                     <Carousel.Caption className="bsp-carousel-caption">
                         <Grid>
                             <Row>

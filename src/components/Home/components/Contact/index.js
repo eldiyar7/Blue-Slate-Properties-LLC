@@ -1,6 +1,5 @@
 import React from 'react';
 import firebase from 'firebase';
-import _ from 'lodash';
 import {Grid, Row, Col} from 'react-bootstrap';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -79,13 +78,12 @@ class Contact extends React.Component {
         event.preventDefault();
         const {name, email, phone, message} = this.state;
 
-        firebase.database().ref('user-' + _.uniqueId()).set({
+        firebase.database().ref('contacts').push({
             username: name,
             email: email,
             phone : phone,
             message: message
         }).then(() => window.location.reload());
-
     }
 
     render() {
