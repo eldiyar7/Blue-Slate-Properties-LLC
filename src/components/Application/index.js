@@ -1,4 +1,5 @@
 import React from 'react';
+import {Redirect} from 'react-router';
 import _ from 'lodash';
 import Formsy from 'formsy-react';
 import {Step, Stepper, StepLabel} from 'material-ui/Stepper';
@@ -7,6 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import {Grid} from 'react-bootstrap';
 import Dialog from 'material-ui/Dialog';
+import firebase from 'firebase';
 
 import ApplicantInformation from './components/ApplicantInformation';
 import CurrentResidence from './components/RentalHistory/CurrentResidence';
@@ -26,7 +28,8 @@ class Application extends React.Component {
             canSubmit: false,
             stepIndex: 0,
             open: false,
-            errors: []
+            errors: [],
+            redirect: false
         };
         this.enableButton = this.enableButton.bind(this);
         this.disableButton = this.disableButton.bind(this);
@@ -45,7 +48,8 @@ class Application extends React.Component {
         this.setState({canSubmit: false});
     }
 
-    submitForm = () => {
+    submitForm = (e) => {
+        e.preventDefault();
         const {
             applicant_information,
             current_residence,
@@ -57,27 +61,16 @@ class Application extends React.Component {
             agreement
         } = this.state;
 
-        axios({
-            method: 'post',
-            url: '/api/applicants',
-            data: {
-                applicant_information: applicant_information,
-                current_residence: current_residence,
-                previous_residence: previous_residence,
-                current_employer: current_employer,
-                previous_employer: previous_employer,
-                credit_history: credit_history,
-                references: references,
-                agreement: agreement
-            }
-        }).then((response) => {
-            console.log(response)
-        }).catch(function (error) {
-            console.log(error);
-        });
-
-        console.log(this.state);
-        alert(JSON.stringify(this.state, null, 4));
+        firebase.database().ref('applicants').push({
+            applicant_information: applicant_information,
+            current_residence: current_residence,
+            previous_residence: previous_residence,
+            current_employer: current_employer,
+            previous_employer: previous_employer,
+            credit_history: credit_history,
+            references: references,
+            agreement: agreement
+        }).then(this.setState({redirect: true}));
     };
 
     getStepContent = (stepIndex) => {
@@ -166,7 +159,7 @@ class Application extends React.Component {
     };
 
     render() {
-        const {stepIndex} = this.state;
+        const {stepIndex, redirect} = this.state;
         const actions = [
             <FlatButton
                 label="Cancel"
@@ -217,7 +210,7 @@ class Application extends React.Component {
                                 onTouchTap={this.handlePrev}
                                 style={{marginRight: 12}}
                             />
-                            {this.state.stepIndex === 8
+                            {stepIndex === 8
                                 ? <RaisedButton
                                     label="Submit"
                                     primary={true}
@@ -232,6 +225,7 @@ class Application extends React.Component {
                                     }}
                                 />
                             }
+                            {stepIndex === 8 && redirect === true && (<Redirect to="/"/>)}
                         </div>
                     </Formsy.Form>
                     <div>

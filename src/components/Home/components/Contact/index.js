@@ -15,10 +15,11 @@ class Contact extends React.Component {
             phone: "",
             message: "",
             disableSubmit: true,
-            errors: {}
+            errors: {},
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.baseState = this.state;
     }
 
     handleChange(e) {
@@ -83,7 +84,7 @@ class Contact extends React.Component {
             email: email,
             phone : phone,
             message: message
-        }).then(() => window.location.reload());
+        }).then(this.setState(this.baseState));
     }
 
     render() {
